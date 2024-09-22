@@ -16,7 +16,7 @@
     <h1>Power System Calculator</h1>
 
     <!-- Input Form -->
-    <form action="/calculate" method="POST">
+    <form id="power-form" action="/calculate" method="POST">
         <!-- Voltage input -->
         <label for="voltage">Enter Voltage (optional):</label>
         <input type="text" name="voltage" placeholder="Voltage (V)"><br><br>
@@ -58,11 +58,36 @@
         <input type="submit" value="Calculate">
     </form>
 
+    <!-- Results Div -->
+    <div id="results"></div>
+
     <!-- Wye and Delta Combined Configuration Diagram -->
     <div class="diagram">
         <h3>Wye and Delta Configurations</h3>
         <object type="image/svg+xml" data="{{ url_for('static', filename='diagrams/wye_and_delta_diagram.svg') }}"></object>
     </div>
+
+    <!-- Script to handle form submission -->
+    <script>
+        document.getElementById('power-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent page reload
+    
+            // Gather form data
+            const formData = new FormData(this);
+    
+            // Send data to Flask
+            fetch('/calculate', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) // Get the response from Flask
+            .then(data => {
+                // Insert the results into the results div
+                document.getElementById('results').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>    
 
 </body>
 </html>
