@@ -3,7 +3,7 @@
 # Date:     09/22/2024
 # Project:  Power-Model
 # 
-# Purpose:  Flask app for Power Electronics Model
+# Purpose:  Flask app for Power Electronics Model.
 # *****************************************
 
 # Imports
