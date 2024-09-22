@@ -12,13 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power System Visualization</title>
-    <style>
-        .diagram {
-            border: 1px solid #ccc;
-            margin: 20px;
-            padding: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
 <body>
     <h1>Power System Calculator</h1>
@@ -26,41 +21,44 @@
     <!-- Input Form -->
     <form id="power-form" action="/calculate" method="POST">
         <!-- Voltage input -->
-        <label for="voltage">Enter Voltage (optional):</label>
+        <label for="voltage">Enter Voltage:</label>
         <input type="text" name="voltage" placeholder="Voltage (V)"><br><br>
         
         <!-- Current input -->
-        <label for="current">Enter Current (optional):</label>
+        <label for="current">Enter Current:</label>
         <input type="text" name="current" placeholder="Current (A)"><br><br>
         
         <!-- Resistor input -->
-        <label for="resistor">Enter Resistor Value (optional):</label>
+        <label for="resistor">Enter Resistor Value:</label>
         <input type="text" name="resistor" placeholder="Resistance (Ω)"><br><br>
 
         <!-- Power input -->
-        <label for="power">Enter Power (optional):</label>
+        <label for="power">Enter Power:</label>
         <input type="text" name="power" placeholder="Power (W)"><br><br>
 
-        <!-- Connection type: Wye or Delta -->
+        <!-- Connection type: Wye or Delta (buttons) -->
         <label for="connection">Choose Configuration:</label>
-        <select name="connection" required>
-            <option value="wye">Wye (Y)</option>
-            <option value="delta">Delta (Δ)</option>
-        </select><br><br>
-        
-        <!-- Voltage type: Phase or Line -->
+        <div class="button-group">
+            <button type="button" class="config-button" data-value="wye">Wye (Y)</button>
+            <button type="button" class="config-button" data-value="delta">Delta (Δ)</button>
+            <input type="hidden" name="connection" id="connection">
+        </div><br><br>
+
+        <!-- Voltage type: Phase or Line (buttons) -->
         <label for="voltage_type">Is Voltage Phase or Line?</label>
-        <select name="voltage_type">
-            <option value="phase">Phase</option>
-            <option value="line">Line</option>
-        </select><br><br>
-        
-        <!-- Current type: Phase or Line -->
+        <div class="button-group">
+            <button type="button" class="voltage-button" data-value="phase">Phase</button>
+            <button type="button" class="voltage-button" data-value="line">Line</button>
+            <input type="hidden" name="voltage_type" id="voltage_type">
+        </div><br><br>
+
+        <!-- Current type: Phase or Line (buttons) -->
         <label for="current_type">Is Current Phase or Line?</label>
-        <select name="current_type">
-            <option value="phase">Phase</option>
-            <option value="line">Line</option>
-        </select><br><br>
+        <div class="button-group">
+            <button type="button" class="current-button" data-value="phase">Phase</button>
+            <button type="button" class="current-button" data-value="line">Line</button>
+            <input type="hidden" name="current_type" id="current_type">
+        </div><br><br>
         
         <!-- Submit button -->
         <input type="submit" value="Calculate">
