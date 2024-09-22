@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power System Calculator</title>
+</head>
+<body>
+    <h1>Power System Visualization</h1>
+    
+    <!-- Form starts here -->
+    <form action="/calculate" method="POST">
+        <!-- Voltage input -->
+        <label for="voltage">Enter Voltage:</label>
+        <input type="text" name="voltage" placeholder="Voltage (V)" required><br><br>
+        
+        <!-- Current input -->
+        <label for="current">Enter Current:</label>
+        <input type="text" name="current" placeholder="Current (A)" required><br><br>
+        
+        <!-- Connection type: Wye or Delta -->
+        <label for="connection">Choose Configuration:</label>
+        <select name="connection" required>
+            <option value="wye">Wye (Y)</option>
+            <option value="delta">Delta (Δ)</option>
+        </select><br><br>
+        
+        <!-- Voltage type: Phase or Line -->
+        <label for="voltage_type">Is Voltage Phase or Line?</label>
+        <select name="voltage_type" required>
+            <option value="phase">Phase</option>
+            <option value="line">Line</option>
+        </select><br><br>
+        
+        <!-- Current type: Phase or Line -->
+        <label for="current_type">Is Current Phase or Line?</label>
+        <select name="current_type" required>
+            <option value="phase">Phase</option>
+            <option value="line">Line</option>
+        </select><br><br>
+        
+        <!-- Submit button -->
+        <input type="submit" value="Calculate">
+    </form>
+    
+</body>
+</html>
