@@ -1,3 +1,10 @@
+# *****************************************
+# Author:   Emanuel A.
+# Date:     09/22/2024
+# Project:  Power-Model
+# 
+# Purpose:  Functions for calculations.
+# *****************************************
 import math
 
 # Wye Connection Calculations
