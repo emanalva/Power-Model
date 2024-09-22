@@ -17,6 +17,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/calculate', methods=['POST'])
 def calculate():
     connection_type = request.form['connection']
     voltage_type = request.form['voltage_type']
