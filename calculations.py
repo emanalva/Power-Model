@@ -96,9 +96,9 @@ def delta_calculations(voltage_phase=None, voltage_line=None, current_phase=None
 # 
 # ************************************
 # Test wye calculations with voltage and resistance
-result = wye_calculations(voltage_phase=120, R=10)
-print(result)  # Should calculate current, power, and voltage line
+# result = wye_calculations(voltage_phase=120, R=10)
+# print(result)  # Should calculate current, power, and voltage line
 
-# Test delta calculations with power and current
-result = delta_calculations(power=500, current_phase=10)
-print(result)  # Should calculate voltage, resistance, and current line
+# # Test delta calculations with power and current
+# result = delta_calculations(power=500, current_phase=10)
+# print(result)  # Should calculate voltage, resistance, and current line
