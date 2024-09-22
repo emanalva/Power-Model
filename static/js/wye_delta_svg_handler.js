@@ -7,6 +7,7 @@
 // *****************************************
 
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("Form submitted!");
     // Listen for form submission
     document.getElementById('power-form').addEventListener('submit', function(event) {
         event.preventDefault();  // Prevent the form from refreshing the page
