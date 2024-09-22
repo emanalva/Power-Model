@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Power System Calculator</title>
+    <style>
+        .diagram {
+            border: 1px solid #ccc;
+            margin: 20px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Power System Calculator</h1>
-    
+
+    <!-- Input Form -->
     <form action="/calculate" method="POST">
         <!-- Voltage input -->
         <label for="voltage">Enter Voltage (optional):</label>
@@ -49,5 +57,12 @@
         <!-- Submit button -->
         <input type="submit" value="Calculate">
     </form>
+
+    <!-- Wye and Delta Combined Configuration Diagram -->
+    <div class="diagram">
+        <h3>Wye and Delta Configurations</h3>
+        <object type="image/svg+xml" data="{{ url_for('static', filename='diagrams/wye_and_delta_diagram.svg') }}"></object>
+    </div>
+
 </body>
 </html>
