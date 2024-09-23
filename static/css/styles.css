@@ -12,14 +12,28 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Center the content */
+/* Title (h1) in the top-left corner */
+h1 {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #333;
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Center the content within the container */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
     padding: 20px;
 }
 
@@ -30,10 +44,11 @@ form {
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 700px; /* Increased width to make the form wider */
+    max-width: 700px;
     margin-bottom: 20px;
 }
 
+/* Form inputs and select dropdowns */
 form input, form select {
     width: 100%;
     padding: 10px;
@@ -47,6 +62,7 @@ form input, form select {
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .button-group button {
@@ -58,6 +74,7 @@ form input, form select {
     cursor: pointer;
     border-radius: 4px;
     text-align: center;
+    max-width: 150px;
 }
 
 .button-group button.selected {
@@ -78,30 +95,33 @@ form input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/* Diagram container */
+/* Diagram container (centered horizontally) */
 .diagram {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.diagram object {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
     width: 100%;
     max-width: 800px;
+}
+
+/* Center the SVG diagram */
+.diagram object {
+    width: 100%;
     height: auto;
 }
 
-/* Headings */
-h1, h3 {
-    color: #333;
-}
-
-/* Adjust margin for label and buttons */
-form label {
-    margin-bottom: 5px;
-}
-
-form div {
-    margin-bottom: 20px;
+/* Style for the Results div (centered above diagram) */
+#results {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    margin: 20px 0;
+    text-align: center;
 }
