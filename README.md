@@ -42,5 +42,13 @@ You can run the Power-Model locally on your machine by following these steps:
     ```
     http://127.0.0.1:5000
     ```
-
 Enjoy visualizing your power system configurations!
+
+---
+
+## 🙏 Acknowledgments
+Special thanks to **Inkscape**, a free and open-source vector graphics editor, for allowing the creation of custom SVG diagrams used in this project to visualize Wye and Delta configurations. You can find more about Inkscape at [https://inkscape.org](https://inkscape.org).
+
+---
+
+© 2024 Emanuel Alvarez
