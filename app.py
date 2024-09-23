@@ -58,13 +58,14 @@ def calculate():
         return result  # Return error message directly
 
     # Display the calculated results
-    voltage_phase, voltage_line, current_phase, calculated_power, calculated_resistor = result
+    voltage_phase, voltage_line, current_phase, current_line, calculated_power, calculated_resistor = result
 
     return f"""
         <h3>Results:</h3>
         <p>Phase Voltage: {voltage_phase} V</p>
         <p>Line Voltage: {voltage_line} V</p>
         <p>Phase Current: {current_phase} A</p>
+        <p>Line Current: {current_line} A</p>  <!-- Added Line Current -->
         <p>Power Dissipation: {calculated_power} W</p>
         <p>Resistance: {calculated_resistor} Ω</p>
     """

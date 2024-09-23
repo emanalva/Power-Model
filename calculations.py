@@ -14,83 +14,182 @@ import math
 #
 # *****************************************
 def wye_calculations(voltage_phase=None, voltage_line=None, current_phase=None, current_line=None, R=None, power=None):
-    # Check how many variables are provided
-    provided_inputs = [voltage_phase, voltage_line, current_phase, current_line, R, power]
-    provided_count = sum([1 for i in provided_inputs if i is not None])
-
-    if provided_count < 2:
+    # Ensure at least two inputs are provided
+    if sum([x is not None for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]]) < 2:
         return "Error: At least two variables are required to calculate the others."
 
-    # Calculate missing variables based on inputs
-    if voltage_phase and current_phase and not power:
-        power = 3 * voltage_phase * current_phase  # Calculate power from voltage and current
-    elif power and voltage_phase and not current_phase:
-        current_phase = power / (3 * voltage_phase)  # Calculate current from power and voltage
-    elif power and current_phase and not voltage_phase:
-        voltage_phase = power / (3 * current_phase)  # Calculate voltage from power and current
-
-    # Calculate voltage line from voltage phase
-    if voltage_phase and not voltage_line:
+    if power and voltage_phase:
         voltage_line = math.sqrt(3) * voltage_phase
-
-    # Calculate current phase from current line
-    if current_line and not current_phase:
-        current_phase = current_line
-
-    # Calculate resistance if voltage and current are provided
-    if voltage_phase and current_phase and not R:
+        current_phase = power / (3* voltage_phase)
+        current_line = current_phase
         R = voltage_phase / current_phase
 
-    # Calculate current from voltage and resistance
-    if voltage_phase and R and not current_phase:
+    elif power and voltage_line:
+        voltage_phase = voltage_line / math.sqrt(3)
+        current_phase = power / (3* voltage_phase)
+        current_line = current_phase
+        R = voltage_phase / current_phase
+
+    elif power and current_phase:
+        voltage_phase = power / (3 * current_phase)
+        voltage_line = math.sqrt(3) * voltage_phase
+        current_line = current_phase
+        R = voltage_phase / current_phase
+
+    elif power and current_line:
+        current_phase = current_line
+        voltage_phase = power / (3 * current_phase)
+        voltage_line = math.sqrt(3) * voltage_phase
+        R = voltage_phase / current_phase
+
+    elif power and R:
+        current_phase = math.sqrt(power / (3 * R))
+        voltage_phase = current_phase * R
+        voltage_line = math.sqrt(3) * voltage_phase
+        current_line = current_phase
+
+    elif voltage_phase and current_phase:
+        power = 3 * voltage_phase * current_phase
+        voltage_line = math.sqrt(3) * voltage_phase
+        current_line = current_phase
+        R = voltage_phase / current_phase
+
+    elif voltage_phase and current_line:
+        current_phase = current_line
+        power = 3 * voltage_phase * current_phase
+        voltage_line = math.sqrt(3) * voltage_phase
+        R = voltage_phase / current_phase
+
+    elif voltage_phase and R:
         current_phase = voltage_phase / R
+        power = 3 * voltage_phase * current_phase
+        voltage_line = math.sqrt(3) * voltage_phase
+        current_line = current_phase
 
-    power = power or 3 * current_phase**2 * R  # Recalculate power if missing
+    elif voltage_line and current_phase:
+        voltage_phase = voltage_line / math.sqrt(3)
+        power = 3 * voltage_phase * current_phase
+        current_line = current_phase
+        R = voltage_phase / current_phase
 
-    return voltage_phase, voltage_line, current_phase, power, R
+    elif voltage_line and current_line:
+        current_phase = current_line
+        voltage_phase = voltage_line / math.sqrt(3)
+        power = 3 * voltage_phase * current_phase
+        R = voltage_phase / current_phase
+
+    elif voltage_line and R:
+        voltage_phase = voltage_line / math.sqrt(3)
+        current_phase = voltage_phase / R
+        current_line = current_phase
+        power = 3 * voltage_phase * current_phase
+
+    elif current_phase and R:
+        voltage_phase = current_phase * R
+        voltage_line = math.sqrt(3) * voltage_phase
+        current_line = current_phase
+        power = 3 * voltage_phase * current_phase
+    
+    elif current_line and R:
+        current_phase = current_line
+        voltage_phase = current_phase * R
+        voltage_line = math.sqrt(3) * voltage_phase
+        power = 3 * voltage_phase * current_phase
+        
+    return voltage_phase, voltage_line, current_phase, current_line, power, R
 # end wye_calculations()
+
 
 # *****************************************
 # Delta Connection Calculations
 #
 # *****************************************
 def delta_calculations(voltage_phase=None, voltage_line=None, current_phase=None, current_line=None, R=None, power=None):
-    # Check how many variables are provided
-    provided_inputs = [voltage_phase, voltage_line, current_phase, current_line, R, power]
-    provided_count = sum([1 for i in provided_inputs if i is not None])
-
-    if provided_count < 2:
+    # Ensure at least two inputs are provided
+    if sum([x is not None for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]]) < 2:
         return "Error: At least two variables are required to calculate the others."
 
-    # Calculate missing variables based on inputs
-    if voltage_phase and current_phase and not power:
-        power = 3 * voltage_phase * current_phase  # Calculate power from voltage and current
-    elif power and voltage_phase and not current_phase:
-        current_phase = power / (3 * voltage_phase)  # Calculate current from power and voltage
-    elif power and current_phase and not voltage_phase:
-        voltage_phase = power / (3 * current_phase)  # Calculate voltage from power and current
-
-    # In delta, line voltage is the same as phase voltage
-    if voltage_phase and not voltage_line:
-        voltage_line = voltage_phase
-
-    # Calculate line current from phase current
-    if current_phase and not current_line:
+    if power and voltage_phase:
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        current_phase = power / (3 * voltage_phase)
         current_line = math.sqrt(3) * current_phase
-
-    # Calculate resistance if voltage and current are provided
-    if voltage_phase and current_phase and not R:
         R = voltage_phase / current_phase
 
-    # Calculate current from voltage and resistance
-    if voltage_phase and R and not current_phase:
+    elif power and voltage_line:
+        voltage_phase = voltage_line  # In delta, voltage_phase = voltage_line
+        current_phase = power / (3 * voltage_phase)
+        current_line = math.sqrt(3) * current_phase
+        R = voltage_phase / current_phase
+
+    elif power and current_phase:
+        voltage_phase = power / (3 * current_phase)
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        current_line = math.sqrt(3) * current_phase
+        R = voltage_phase / current_phase
+
+    elif power and current_line:
+        current_phase = current_line / math.sqrt(3)
+        voltage_phase = power / (3 * current_phase)
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        R = voltage_phase / current_phase
+
+    elif power and R:
+        current_phase = math.sqrt(power / (3 * R))
+        voltage_phase = current_phase * R
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        current_line = math.sqrt(3) * current_phase
+
+    elif voltage_phase and current_phase:
+        power = 3 * voltage_phase * current_phase
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        current_line = math.sqrt(3) * current_phase
+        R = voltage_phase / current_phase
+
+    elif voltage_phase and current_line:
+        current_phase = current_line / math.sqrt(3)
+        power = 3 * voltage_phase * current_phase
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        R = voltage_phase / current_phase
+
+    elif voltage_phase and R:
         current_phase = voltage_phase / R
+        power = 3 * voltage_phase * current_phase
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        current_line = math.sqrt(3) * current_phase
 
-    power = power or 3 * current_line**2 * R  # Recalculate power if missing
+    elif voltage_line and current_phase:
+        voltage_phase = voltage_line  # In delta, voltage_phase = voltage_line
+        power = 3 * voltage_phase * current_phase
+        current_line = math.sqrt(3) * current_phase
+        R = voltage_phase / current_phase
 
-    return voltage_phase, voltage_line, current_phase, power, R
+    elif voltage_line and current_line:
+        current_phase = current_line / math.sqrt(3)
+        voltage_phase = voltage_line  # In delta, voltage_phase = voltage_line
+        power = 3 * voltage_phase * current_phase
+        R = voltage_phase / current_phase
+
+    elif voltage_line and R:
+        voltage_phase = voltage_line  # In delta, voltage_phase = voltage_line
+        current_phase = voltage_phase / R
+        current_line = math.sqrt(3) * current_phase
+        power = 3 * voltage_phase * current_phase
+
+    elif current_phase and R:
+        voltage_phase = current_phase * R
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        current_line = math.sqrt(3) * current_phase
+        power = 3 * voltage_phase * current_phase
+
+    elif current_line and R:
+        current_phase = current_line / math.sqrt(3)
+        voltage_phase = current_phase * R
+        voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line
+        power = 3 * voltage_phase * current_phase
+
+    return voltage_phase, voltage_line, current_phase, current_line, power, R
 # end delta_calculations()
-    
+
 # ************************************
 # Uncomment to test calculations
 # 
