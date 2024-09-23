@@ -1,0 +1,17 @@
+{
+  "name": "power-model",
+  "version": "1.0.0",
+  "description": "## 📝 Overview Power-Model is a dynamic web-based application designed to help visualize and interact with **Wye (Y)** and **Delta (Δ)** power system configurations. This tool allows users to input electrical parameters and receive calculations for **voltage**, **current**, **resistance**, and **power** in real time. It is a resource designed for students, engineers, and professionals working in the field of power systems.",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx tailwindcss build static/css/tailwind.css -o static/css/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.12"
+  }
+}

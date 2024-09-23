@@ -21,3 +21,7 @@ __pycache__/
 *.odt
 *.rtf
 *.tex
+
+# Ignore node modules. 
+# User can regenerate when running npm install
+node_modules/
