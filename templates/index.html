@@ -16,43 +16,43 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body class="bg-red-500 min-h-screen flex flex-col items-center justify-center">
-    <div class="bg-gray-500">
+<body class="bg-red-500 min-h-screen flex flex-col items-center justify-center p-6">
+    <div class="bg-gray-500 rounded-lg p-6 space-y-4">
         <!-- Title -->
-        <div class="flex items-center justify-center">
-            <h1 class="">Power System Calculator</h1>
+        <div class="flex items-center justify-center mb-4">
+            <h1 class="text-lg font-bold">Power System Calculator</h1>
         </div>
         
         <!-- Input Form -->
-        <form id="power-form" action="/calculate" method="POST" class="bg-gray-300 flex flex-col space-y-4">
+        <form id="power-form" action="/calculate" method="POST" class="bg-gray-300 p-6 rounded-lg flex flex-col space-y-6">
             <!-- Voltage input -->
-            <div class="flex space-x-2 items-center">
-                <label for="voltage" class="">Enter Voltage:</label>
-                <input type="text" name="voltage" id="voltage" placeholder="Voltage (V)" class="">
+            <div class="flex space-x-4 items-center">
+                <label for="voltage" class="w-40">Enter Voltage:</label>
+                <input type="text" name="voltage" id="voltage" placeholder="Voltage (V)" class="rounded-lg p-2">
             </div>
 
             <!-- Current input -->
-            <div class="flex space-x-2 items-center">
-                <label for="current" class="">Enter Current:</label>
-                <input type="text" name="current" id="current" placeholder="Current (A)" class="">
+            <div class="flex space-x-4 items-center">
+                <label for="current" class="w-40">Enter Current:</label>
+                <input type="text" name="current" id="current" placeholder="Current (A)" class="rounded-lg p-2">
             </div>
             
             <!-- Resistor input -->
-            <div class="flex space-x-2 items-center">
-                <label for="resistor" class="">Enter Resistor Value:</label>
-                <input type="text" name="resistor" placeholder="Resistance (Ω)" class="">
+            <div class="flex space-x-4 items-center">
+                <label for="resistor" class="w-40">Enter Resistor Value:</label>
+                <input type="text" name="resistor" id="resistor" placeholder="Resistance (Ω)" class="rounded-lg p-2">
             </div>
             
             <!-- Power input -->
-            <div class="flex space-x-2 items-center">
-                <label for="power" class="">Enter Power:</label>
-                <input type="text" name="power" placeholder="Power (W)" class="">
+            <div class="flex space-x-4 items-center">
+                <label for="power" class="w-40">Enter Power:</label>
+                <input type="text" name="power" id="power" placeholder="Power (W)" class="rounded-lg p-2">
             </div>
             
         <!-- Connection type: Wye or Delta (buttons) -->
-        <div class="flex space-x-2 items-center">
-            <label for="connection" class="text-sm font-medium">Choose Configuration:</label>
-            <div class="text-center">
+        <div class="flex space-x-4 items-center">
+            <label for="connection" class="text-sm font-medium w-40">Choose Configuration:</label>
+            <div class="text-center space-x-4">
                 <button type="button" class="config-button wye-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="wye">
                     Wye (Y)
                 </button>
@@ -64,9 +64,9 @@
         </div>
 
         <!-- Voltage type: Phase or Line (buttons) -->
-        <div class="flex space-x-2 items-center">
-            <label for="voltage_type" class="text-sm font-medium">Is Voltage Phase or Line?</label>
-            <div class="text-center">
+        <div class="flex space-x-4 items-center">
+            <label for="voltage_type" class="text-sm font-medium w-40">Is Voltage Phase or Line?</label>
+            <div class="text-center space-x-4">
                 <button type="button" class="voltage-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">
                     Phase
                 </button>
@@ -78,9 +78,9 @@
         </div>
 
         <!-- Current type: Phase or Line (buttons) -->
-        <div class="flex space-x-2 items-center">
-            <label for="current_type" class="text-sm font-medium">Is Current Phase or Line?</label>
-            <div class="text-center">
+        <div class="flex space-x-4 items-center">
+            <label for="current_type" class="text-sm font-medium w-40">Is Current Phase or Line?</label>
+            <div class="text-center space-x-4">
                 <button type="button" class="current-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">
                     Phase
                 </button>
@@ -91,14 +91,12 @@
             </div>
         </div>
 
-        <!-- ********************************************   TEST RESULTS BUTTON    ******************************************** -->
         <!-- Random Values Button -->
         <div class="text-center">
             <button type="button" id="random-values-button" class="bg-yellow-500 text-white p-3 rounded-lg hover:bg-yellow-600">
                 Random Values
             </button>
         </div>
-        <!-- ********************************************   TEST RESULTS BUTTON    ******************************************** -->
 
         <!-- Submit button -->
         <div class="text-center">
@@ -109,18 +107,15 @@
     </div>
 
     <!-- Results Div -->
-    <div id="results" class="bg-blue-400"></div>
+    <div id="results" class="bg-blue-400 rounded-lg p-4 mt-4"></div>
 
     <!-- Wye and Delta Combined Configuration Diagram -->
-    <div class="flex-col justify-center">
+    <div class="flex-col justify-center mt-4">
         <h3 class="text-center">Wye and Delta Configurations</h3>
         <object id="wye_and_delta_diagram" type="image/svg+xml" data="static/diagrams/wye_and_delta_diagram.svg"></object>
     </div>
 
-    <!-- Load the script to handle button selections -->
     <script src="{{ url_for('static', filename='js/button_handler.js') }}"></script>
-
-    <!-- Load the script to handle SVG updates -->
     <script src="{{ url_for('static', filename='js/wye_delta_svg_handler.js') }}"></script>
 
 </body>
