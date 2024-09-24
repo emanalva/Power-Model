@@ -28,13 +28,13 @@
             <!-- Voltage input -->
             <div class="flex space-x-2 items-center">
                 <label for="voltage" class="">Enter Voltage:</label>
-                <input type="text" name="voltage" placeholder="Voltage (V)" class="">
+                <input type="text" name="voltage" id="voltage" placeholder="Voltage (V)" class="">
             </div>
-            
+
             <!-- Current input -->
             <div class="flex space-x-2 items-center">
                 <label for="current" class="">Enter Current:</label>
-                <input type="text" name="current" placeholder="Current (A)" class="">
+                <input type="text" name="current" id="current" placeholder="Current (A)" class="">
             </div>
             
             <!-- Resistor input -->
@@ -53,8 +53,12 @@
         <div class="flex space-x-2 items-center">
             <label for="connection" class="text-sm font-medium">Choose Configuration:</label>
             <div class="text-center">
-                <button type="button" class="config-button wye-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="wye">Wye (Y)</button>
-                <button type="button" class="config-button delta-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="delta">Delta (Δ)</button>
+                <button type="button" class="config-button wye-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="wye">
+                    Wye (Y)
+                </button>
+                <button type="button" class="config-button delta-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="delta">
+                    Delta (Δ)
+                </button>
                 <input type="hidden" name="connection" id="connection">
             </div>
         </div>
@@ -63,8 +67,12 @@
         <div class="flex space-x-2 items-center">
             <label for="voltage_type" class="text-sm font-medium">Is Voltage Phase or Line?</label>
             <div class="text-center">
-                <button type="button" class="voltage-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">Phase</button>
-                <button type="button" class="voltage-button line-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="line">Line</button>
+                <button type="button" class="voltage-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">
+                    Phase
+                </button>
+                <button type="button" class="voltage-button line-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="line">
+                    Line
+                </button>
                 <input type="hidden" name="voltage_type" id="voltage_type">
             </div>
         </div>
@@ -73,11 +81,24 @@
         <div class="flex space-x-2 items-center">
             <label for="current_type" class="text-sm font-medium">Is Current Phase or Line?</label>
             <div class="text-center">
-                <button type="button" class="current-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">Phase</button>
-                <button type="button" class="current-button line-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="line">Line</button>
+                <button type="button" class="current-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">
+                    Phase
+                </button>
+                <button type="button" class="current-button line-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="line">
+                    Line
+                </button>
                 <input type="hidden" name="current_type" id="current_type">
             </div>
         </div>
+
+        <!-- ********************************************   TEST RESULTS BUTTON    ******************************************** -->
+        <!-- Random Values Button -->
+        <div class="text-center">
+            <button type="button" id="random-values-button" class="bg-yellow-500 text-white p-3 rounded-lg hover:bg-yellow-600">
+                Random Values
+            </button>
+        </div>
+        <!-- ********************************************   TEST RESULTS BUTTON    ******************************************** -->
 
         <!-- Submit button -->
         <div class="text-center">
@@ -88,7 +109,7 @@
     </div>
 
     <!-- Results Div -->
-    <div id="results"></div>
+    <div id="results" class="bg-blue-500"></div>
 
     <!-- Wye and Delta Combined Configuration Diagram -->
     <div class="flex-col justify-center">

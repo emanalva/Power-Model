@@ -62,12 +62,12 @@ def calculate():
 
     return f"""
         <h3>Results:</h3>
-        <p>Phase Voltage: {voltage_phase} V</p>
-        <p>Line Voltage: {voltage_line} V</p>
-        <p>Phase Current: {current_phase} A</p>
-        <p>Line Current: {current_line} A</p>  <!-- Added Line Current -->
-        <p>Power Dissipation: {calculated_power} W</p>
-        <p>Resistance: {calculated_resistor} Ω</p>
+        <p>Phase Voltage: {voltage_phase:.2f} V</p>
+        <p>Line Voltage: {voltage_line:.2f} V</p>
+        <p>Phase Current: {current_phase:.2f} A</p>
+        <p>Line Current: {current_line:.2f} A</p>  <!-- Added Line Current -->
+        <p>Power Dissipation: {calculated_power:.2f} W</p>
+        <p>Resistance: {calculated_resistor:.2f} Ω</p>
     """
 # end calculate()
 
