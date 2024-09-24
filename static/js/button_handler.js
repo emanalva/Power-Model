@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const toggleButton = document.getElementById('toggle-dark-mode');
     const body = document.body; // Reference the body directly
     const calculatorBox = document.querySelector('.calculator-box'); // Selects the calculator box
-    const resultsBox = document.getElementById('results');
+    const resultsBox = document.getElementById('results'); // Selects the results box
 
     // Load previously saved mode from localStorage
     const savedMode = localStorage.getItem('darkMode');
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Toggle button click event listener
     toggleButton.addEventListener('click', function () {
-        const darkModeEnabled = body.classList.contains('bg-gray-800');
+        const darkModeEnabled = body.classList.contains('bg-black');
 
         if (darkModeEnabled) {
             disableDarkMode();
@@ -34,16 +34,16 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Enable dark mode function
     function enableDarkMode() {
-        body.classList.replace('bg-amber-100', 'bg-gray-800');
-        calculatorBox.classList.replace('bg-gray-500', 'bg-gray-900');
+        body.classList.replace('bg-white', 'bg-black');
+        calculatorBox.classList.replace('bg-uniqueLightGray', 'bg-uniqueDarkGray');
         resultsBox.classList.replace('bg-blue-400', 'bg-gray-700');
         localStorage.setItem('darkMode', 'enabled');
     }
 
     // Disable dark mode function
     function disableDarkMode() {
-        body.classList.replace('bg-gray-800', 'bg-amber-100');
-        calculatorBox.classList.replace('bg-gray-900', 'bg-gray-500');
+        body.classList.replace('bg-black', 'bg-white');
+        calculatorBox.classList.replace('bg-uniqueDarkGray', 'bg-uniqueLightGray');
         resultsBox.classList.replace('bg-gray-700', 'bg-blue-400');
         localStorage.setItem('darkMode', 'disabled');
     }

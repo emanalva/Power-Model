@@ -5,7 +5,15 @@ module.exports = {
     './static/js/**/*.js',     // This will scan your JS files in 'static/js' directory
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        uniqueGreen: '#1db954',
+        uniqueBlack: '#121212',
+        uniqueGrayBlack: '#212121',
+        uniqueDarkGray: '#535353',
+        uniqueLightGray: '#b3b3b3',
+      },
+    },
   },
   plugins: [],
 }

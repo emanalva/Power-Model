@@ -17,15 +17,15 @@
 </head>
 
 <body class="bg-white min-h-screen flex flex-col items-center justify-center p-6">
-    <div class="bg-gray-400 rounded-lg p-6 space-y-4 w-full calculator-box mt-6">
+    <div class="bg-uniqueLightGray rounded-2xl p-6 space-y-4 w-full calculator-box">
         <!-- Title with Dark Mode Toggle -->
-        <div class="flex items-center mb-4">
-            <h1 class="text-lg font-bold">Power System Calculator</h1>
-            <button id="toggle-dark-mode" class="ml-4 bg-gray-600 text-white p-2 rounded-lg hover:bg-gray-800">Toggle Dark Mode</button>
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="text-xl font-bold text-center flex-grow">Power System Calculator</h1>
+            <button id="toggle-dark-mode" class="ml-auto bg-uniqueDarkGray text-white p-2 rounded-lg hover:bg-gray-800">Toggle Dark Mode</button>
         </div>
         
         <!-- Input Form -->
-        <form id="power-form" action="/calculate" method="POST" class="bg-gray-300 p-6 rounded-lg flex flex-col space-y-6">
+        <form id="power-form" action="/calculate" method="POST" class="p-6 rounded-lg flex flex-col space-y-6">
             <!-- Voltage input -->
             <div class="flex space-x-4 items-center justify-center">
                 <label for="voltage" class="w-40">Enter Voltage:</label>
@@ -94,14 +94,14 @@
 
         <!-- Random Values Button -->
         <div class="text-center">
-            <button type="button" id="random-values-button" class="bg-yellow-500 text-white p-3 rounded-lg hover:bg-yellow-600">
+            <button type="button" id="random-values-button" class="bg-yellow-500 text-black p-3 rounded-lg hover:bg-yellow-600">
                 Random Values
             </button>
         </div>
 
         <!-- Submit button -->
         <div class="text-center">
-            <input type="submit" value="Calculate" class="bg-green-500 text-white p-3 rounded-lg hover:bg-green-600">
+            <input type="submit" value="Calculate" class="bg-green-500 text-black p-3 rounded-lg hover:bg-green-600">
         </div>
 
         </form>
