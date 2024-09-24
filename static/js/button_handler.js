@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", function() {
     configButtons.forEach(button => {
         button.addEventListener('click', function() {
             configButtons.forEach(btn => {
-                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.remove('bg-blue-400', 'text-white');
                 btn.classList.add('bg-gray-200', 'text-black');
             });
             button.classList.remove('bg-gray-200', 'text-black');
-            button.classList.add('bg-blue-500', 'text-white');
+            button.classList.add('bg-blue-400', 'text-white');
             document.getElementById('connection').value = button.getAttribute('data-value');
         });
     });
@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", function() {
     voltageButtons.forEach(button => {
         button.addEventListener('click', function() {
             voltageButtons.forEach(btn => {
-                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.remove('bg-blue-400', 'text-white');
                 btn.classList.add('bg-gray-200', 'text-black');
             });
             button.classList.remove('bg-gray-200', 'text-black');
-            button.classList.add('bg-blue-500', 'text-white');
+            button.classList.add('bg-blue-400', 'text-white');
             document.getElementById('voltage_type').value = button.getAttribute('data-value');
         });
     });
@@ -40,11 +40,11 @@ document.addEventListener("DOMContentLoaded", function() {
     currentButtons.forEach(button => {
         button.addEventListener('click', function() {
             currentButtons.forEach(btn => {
-                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.remove('bg-blue-400', 'text-white');
                 btn.classList.add('bg-gray-200', 'text-black');
             });
             button.classList.remove('bg-gray-200', 'text-black');
-            button.classList.add('bg-blue-500', 'text-white');
+            button.classList.add('bg-blue-400', 'text-white');
             document.getElementById('current_type').value = button.getAttribute('data-value');
         });
     });
@@ -52,8 +52,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Handle Random Values Button
     document.getElementById('random-values-button').addEventListener('click', function() {
         // Generate random values for voltage and current
-        const randomVoltage = Math.floor(Math.random() * 241); // 0 to 240
-        const randomCurrent = Math.floor(Math.random() * 101); // 0 to 100
+        const randomVoltage = Math.floor(Math.random() * 240) + 1; // 1 to 240
+        const randomCurrent = Math.floor(Math.random() * 100) + 1; // 1 to 100
     
         // Randomly select Wye (Y) or Delta (Δ)
         const randomConnection = Math.random() < 0.5 ? 'wye' : 'delta';
@@ -75,28 +75,29 @@ document.addEventListener("DOMContentLoaded", function() {
     
         // Update button visuals for Wye/Delta
         configButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-600', 'text-white');
+            btn.classList.remove('bg-blue-400', 'text-white');
             btn.classList.add('bg-gray-200', 'text-black');
         });
-        document.querySelector(`.${randomConnection}-button`).classList.add('bg-blue-600', 'text-white');
+        document.querySelector(`.${randomConnection}-button`).classList.add('bg-blue-400', 'text-white');
     
         // Update button visuals for Voltage Type (Phase/Line)
         voltageButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-600', 'text-white');
+            btn.classList.remove('bg-blue-400', 'text-white');
             btn.classList.add('bg-gray-200', 'text-black');
         });
-        document.querySelector(`.${randomVoltageType}-button`).classList.add('bg-blue-600', 'text-white');
+        document.querySelector(`.${randomVoltageType}-button`).classList.add('bg-blue-400', 'text-white');
     
         // Update button visuals for Current Type (Phase/Line)
         currentButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-600', 'text-white');
+            btn.classList.remove('bg-blue-400', 'text-white');
             btn.classList.add('bg-gray-200', 'text-black');
         });
-        document.querySelector(`.current-button.${randomCurrentType}-button`).classList.add('bg-blue-600', 'text-white');
+        document.querySelector(`.current-button.${randomCurrentType}-button`).classList.add('bg-blue-400', 'text-white');
     
         // Automatically submit the form after the random values are set
         submitFormWithFetch();
-    });    
+
+    }); 
 
     // Function to handle form submission using fetch
     function submitFormWithFetch() {
@@ -149,5 +150,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Call the same function to submit form via fetch
         submitFormWithFetch();
+        
     });
 });
