@@ -7,6 +7,47 @@
 // *****************************************
 document.addEventListener("DOMContentLoaded", function() {
 
+    // Dark Mode Toggle Logic
+    const toggleButton = document.getElementById('toggle-dark-mode');
+    const body = document.body; // Reference the body directly
+    const calculatorBox = document.querySelector('.calculator-box'); // Selects the calculator box
+    const resultsBox = document.getElementById('results');
+
+    // Load previously saved mode from localStorage
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode === 'enabled') {
+        enableDarkMode();
+    } else {
+        disableDarkMode();
+    }
+
+    // Toggle button click event listener
+    toggleButton.addEventListener('click', function () {
+        const darkModeEnabled = body.classList.contains('bg-gray-800');
+
+        if (darkModeEnabled) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+
+    // Enable dark mode function
+    function enableDarkMode() {
+        body.classList.replace('bg-amber-100', 'bg-gray-800');
+        calculatorBox.classList.replace('bg-gray-500', 'bg-gray-900');
+        resultsBox.classList.replace('bg-blue-400', 'bg-gray-700');
+        localStorage.setItem('darkMode', 'enabled');
+    }
+
+    // Disable dark mode function
+    function disableDarkMode() {
+        body.classList.replace('bg-gray-800', 'bg-amber-100');
+        calculatorBox.classList.replace('bg-gray-900', 'bg-gray-500');
+        resultsBox.classList.replace('bg-gray-700', 'bg-blue-400');
+        localStorage.setItem('darkMode', 'disabled');
+    }
+
     // Handle Configuration (Wye/Delta) buttons
     const configButtons = document.querySelectorAll('.config-button');
     configButtons.forEach(button => {

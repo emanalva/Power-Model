@@ -16,41 +16,42 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body class="bg-red-500 min-h-screen flex flex-col items-center justify-center p-6">
-    <div class="bg-gray-500 rounded-lg p-6 space-y-4">
-        <!-- Title -->
-        <div class="flex items-center justify-center mb-4">
+<body class="bg-white min-h-screen flex flex-col items-center justify-center p-6">
+    <div class="bg-gray-400 rounded-lg p-6 space-y-4 w-full calculator-box mt-6">
+        <!-- Title with Dark Mode Toggle -->
+        <div class="flex items-center mb-4">
             <h1 class="text-lg font-bold">Power System Calculator</h1>
+            <button id="toggle-dark-mode" class="ml-4 bg-gray-600 text-white p-2 rounded-lg hover:bg-gray-800">Toggle Dark Mode</button>
         </div>
         
         <!-- Input Form -->
         <form id="power-form" action="/calculate" method="POST" class="bg-gray-300 p-6 rounded-lg flex flex-col space-y-6">
             <!-- Voltage input -->
-            <div class="flex space-x-4 items-center">
+            <div class="flex space-x-4 items-center justify-center">
                 <label for="voltage" class="w-40">Enter Voltage:</label>
                 <input type="text" name="voltage" id="voltage" placeholder="Voltage (V)" class="rounded-lg p-2">
             </div>
 
             <!-- Current input -->
-            <div class="flex space-x-4 items-center">
+            <div class="flex space-x-4 items-center justify-center">
                 <label for="current" class="w-40">Enter Current:</label>
                 <input type="text" name="current" id="current" placeholder="Current (A)" class="rounded-lg p-2">
             </div>
             
             <!-- Resistor input -->
-            <div class="flex space-x-4 items-center">
+            <div class="flex space-x-4 items-center justify-center">
                 <label for="resistor" class="w-40">Enter Resistor Value:</label>
                 <input type="text" name="resistor" id="resistor" placeholder="Resistance (Ω)" class="rounded-lg p-2">
             </div>
             
             <!-- Power input -->
-            <div class="flex space-x-4 items-center">
+            <div class="flex space-x-4 items-center justify-center">
                 <label for="power" class="w-40">Enter Power:</label>
                 <input type="text" name="power" id="power" placeholder="Power (W)" class="rounded-lg p-2">
             </div>
             
         <!-- Connection type: Wye or Delta (buttons) -->
-        <div class="flex space-x-4 items-center">
+        <div class="flex space-x-4 items-center justify-center">
             <label for="connection" class="text-sm font-medium w-40">Choose Configuration:</label>
             <div class="text-center space-x-4">
                 <button type="button" class="config-button wye-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="wye">
@@ -64,7 +65,7 @@
         </div>
 
         <!-- Voltage type: Phase or Line (buttons) -->
-        <div class="flex space-x-4 items-center">
+        <div class="flex space-x-4 items-center justify-center">
             <label for="voltage_type" class="text-sm font-medium w-40">Is Voltage Phase or Line?</label>
             <div class="text-center space-x-4">
                 <button type="button" class="voltage-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">
@@ -78,7 +79,7 @@
         </div>
 
         <!-- Current type: Phase or Line (buttons) -->
-        <div class="flex space-x-4 items-center">
+        <div class="flex space-x-4 items-center justify-center">
             <label for="current_type" class="text-sm font-medium w-40">Is Current Phase or Line?</label>
             <div class="text-center space-x-4">
                 <button type="button" class="current-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">
