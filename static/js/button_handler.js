@@ -1,20 +1,28 @@
 // *****************************************
 // Author:   Emanuel A.
-// Date:     09/22/2024
+// Date:     09/23/2024
 // Project:  Power-Model
 // 
-// Purpose:  JavaScript for handling button selections for configuration, voltage, and current type.
+// Purpose:  Combined JavaScript for handling button selections and form submission.
 // *****************************************
-
 document.addEventListener("DOMContentLoaded", function() {
-    
+
     // Handle Configuration (Wye/Delta) buttons
     const configButtons = document.querySelectorAll('.config-button');
     configButtons.forEach(button => {
         button.addEventListener('click', function() {
-            configButtons.forEach(btn => btn.classList.remove('selected')); // Remove selected class from all
-            button.classList.add('selected'); // Add selected class to clicked button
-            document.getElementById('connection').value = button.getAttribute('data-value'); // Set hidden form field
+            // Remove 'selected' state from all buttons
+            configButtons.forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-black');
+            });
+
+            // Add 'selected' state to the clicked button
+            button.classList.remove('bg-gray-200', 'text-black');
+            button.classList.add('bg-blue-500', 'text-white');
+
+            // Update hidden input value
+            document.getElementById('connection').value = button.getAttribute('data-value');
         });
     });
 
@@ -22,9 +30,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const voltageButtons = document.querySelectorAll('.voltage-button');
     voltageButtons.forEach(button => {
         button.addEventListener('click', function() {
-            voltageButtons.forEach(btn => btn.classList.remove('selected')); // Remove selected class from all
-            button.classList.add('selected'); // Add selected class to clicked button
-            document.getElementById('voltage_type').value = button.getAttribute('data-value'); // Set hidden form field
+            // Remove 'selected' state from all buttons
+            voltageButtons.forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-black');
+            });
+
+            // Add 'selected' state to the clicked button
+            button.classList.remove('bg-gray-200', 'text-black');
+            button.classList.add('bg-blue-500', 'text-white');
+
+            // Update hidden input value
+            document.getElementById('voltage_type').value = button.getAttribute('data-value');
         });
     });
 
@@ -32,10 +49,38 @@ document.addEventListener("DOMContentLoaded", function() {
     const currentButtons = document.querySelectorAll('.current-button');
     currentButtons.forEach(button => {
         button.addEventListener('click', function() {
-            currentButtons.forEach(btn => btn.classList.remove('selected')); // Remove selected class from all
-            button.classList.add('selected'); // Add selected class to clicked button
-            document.getElementById('current_type').value = button.getAttribute('data-value'); // Set hidden form field
+            // Remove 'selected' state from all buttons
+            currentButtons.forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-black');
+            });
+
+            // Add 'selected' state to the clicked button
+            button.classList.remove('bg-gray-200', 'text-black');
+            button.classList.add('bg-blue-500', 'text-white');
+
+            // Update hidden input value
+            document.getElementById('current_type').value = button.getAttribute('data-value');
         });
     });
 
+    // Handle Form Submission
+    document.getElementById('power-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent page reload
+
+        // Gather form data
+        const formData = new FormData(this);
+
+        // Send data to Flask
+        fetch('/calculate', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text()) // Get the response from Flask
+        .then(data => {
+            // Insert the results into the results div
+            document.getElementById('results').innerHTML = data;
+        })
+        .catch(error => console.error('Error:', error));
+    });
 });

@@ -16,55 +16,74 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body class="bg-green-500 min-h-screen flex-col items-center justify-center">
-    <div class="container max-w-xl mx-auto p-4 bg-white shadow-md rounded-lg">
+<body class="bg-red-500 min-h-screen flex flex-col items-center justify-center">
+    <div class="bg-gray-500">
         <!-- Title -->
-        <h1 class="text-4xl font-bold mb-4 text-center">Power System Calculator</h1>
+        <div class="flex items-center justify-center">
+            <h1 class="">Power System Calculator</h1>
+        </div>
         
         <!-- Input Form -->
-        <form id="power-form" action="/calculate" method="POST" class="space-y-4">
+        <form id="power-form" action="/calculate" method="POST" class="bg-gray-300 flex flex-col space-y-4">
             <!-- Voltage input -->
-            <label for="voltage" class="block text-sm font-medium text-gray-700">Enter Voltage:</label>
-            <input type="text" name="voltage" placeholder="Voltage (V)" class="w-full border-gray-300 rounded-md shadow-sm p-2">
+            <div class="flex space-x-2 items-center">
+                <label for="voltage" class="">Enter Voltage:</label>
+                <input type="text" name="voltage" placeholder="Voltage (V)" class="">
+            </div>
             
             <!-- Current input -->
-            <label for="current" class="block text-sm font-medium text-gray-700">Enter Current:</label>
-            <input type="text" name="current" placeholder="Current (A)" class="w-full border-gray-300 rounded-md shadow-sm p-2">
+            <div class="flex space-x-2 items-center">
+                <label for="current" class="">Enter Current:</label>
+                <input type="text" name="current" placeholder="Current (A)" class="">
+            </div>
             
             <!-- Resistor input -->
-            <label for="resistor" class="block text-sm font-medium text-gray-700">Enter Resistor Value:</label>
-            <input type="text" name="resistor" placeholder="Resistance (Ω)" class="w-full border-gray-300 rounded-md shadow-sm p-2">
+            <div class="flex space-x-2 items-center">
+                <label for="resistor" class="">Enter Resistor Value:</label>
+                <input type="text" name="resistor" placeholder="Resistance (Ω)" class="">
+            </div>
             
             <!-- Power input -->
-            <label for="power" class="block text-sm font-medium text-gray-700">Enter Power:</label>
-            <input type="text" name="power" placeholder="Power (W)" class="w-full border-gray-300 rounded-md shadow-sm p-2">
+            <div class="flex space-x-2 items-center">
+                <label for="power" class="">Enter Power:</label>
+                <input type="text" name="power" placeholder="Power (W)" class="">
+            </div>
             
-            <!-- Connection type: Wye or Delta (buttons) -->
-            <label for="connection" class="block text-sm font-medium text-gray-700">Choose Configuration:</label>
-            <div class="button-group flex space-x-2">
-                <button type="button" class="config-button w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 rounded-md" data-value="wye">Wye (Y)</button>
-                <button type="button" class="config-button w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 rounded-md" data-value="delta">Delta (Δ)</button>
+        <!-- Connection type: Wye or Delta (buttons) -->
+        <div class="flex space-x-2 items-center">
+            <label for="connection" class="text-sm font-medium">Choose Configuration:</label>
+            <div class="text-center">
+                <button type="button" class="config-button wye-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="wye">Wye (Y)</button>
+                <button type="button" class="config-button delta-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="delta">Delta (Δ)</button>
                 <input type="hidden" name="connection" id="connection">
             </div>
-            
-            <!-- Voltage type: Phase or Line (buttons) -->
-            <label for="voltage_type" class="block text-sm font-medium text-gray-700">Is Voltage Phase or Line?</label>
-            <div class="button-group flex space-x-2">
-                <button type="button" class="voltage-button w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 rounded-md" data-value="phase">Phase</button>
-                <button type="button" class="voltage-button w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 rounded-md" data-value="line">Line</button>
+        </div>
+
+        <!-- Voltage type: Phase or Line (buttons) -->
+        <div class="flex space-x-2 items-center">
+            <label for="voltage_type" class="text-sm font-medium">Is Voltage Phase or Line?</label>
+            <div class="text-center">
+                <button type="button" class="voltage-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">Phase</button>
+                <button type="button" class="voltage-button line-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="line">Line</button>
                 <input type="hidden" name="voltage_type" id="voltage_type">
             </div>
-            
-            <!-- Current type: Phase or Line (buttons) -->
-            <label for="current_type" class="block text-sm font-medium text-gray-700">Is Current Phase or Line?</label>
-            <div class="button-group flex space-x-2">
-                <button type="button" class="current-button w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 rounded-md" data-value="phase">Phase</button>
-                <button type="button" class="current-button w-full py-2 px-4 bg-gray-200 hover:bg-gray-300 rounded-md" data-value="line">Line</button>
+        </div>
+
+        <!-- Current type: Phase or Line (buttons) -->
+        <div class="flex space-x-2 items-center">
+            <label for="current_type" class="text-sm font-medium">Is Current Phase or Line?</label>
+            <div class="text-center">
+                <button type="button" class="current-button phase-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="phase">Phase</button>
+                <button type="button" class="current-button line-button bg-gray-200 text-black p-3 rounded-lg hover:bg-blue-300" data-value="line">Line</button>
                 <input type="hidden" name="current_type" id="current_type">
             </div>
-            
-            <!-- Submit button -->
-            <input type="submit" value="Calculate" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+        </div>
+
+        <!-- Submit button -->
+        <div class="text-center">
+            <input type="submit" value="Calculate" class="bg-green-500 text-white p-3 rounded-lg hover:bg-green-600">
+        </div>
+
         </form>
     </div>
 
@@ -72,16 +91,13 @@
     <div id="results"></div>
 
     <!-- Wye and Delta Combined Configuration Diagram -->
-    <div class="diagram mt-8">
-        <h3 class="text-center text-xl font-semibold mb-4">Wye and Delta Configurations</h3>
+    <div class="flex-col justify-center">
+        <h3 class="text-center">Wye and Delta Configurations</h3>
         <object id="wye_and_delta_diagram" type="image/svg+xml" data="static/diagrams/wye_and_delta_diagram.svg"></object>
     </div>
 
     <!-- Load the script to handle button selections -->
     <script src="{{ url_for('static', filename='js/button_handler.js') }}"></script>
-
-    <!-- Load the script to handle form submission -->
-    <script src="{{ url_for('static', filename='js/form_handler.js') }}"></script>
 
     <!-- Load the script to handle SVG updates -->
     <script src="{{ url_for('static', filename='js/wye_delta_svg_handler.js') }}"></script>
