@@ -17,6 +17,10 @@ def wye_calculations(voltage_phase=None, voltage_line=None, current_phase=None, 
     # Ensure at least two inputs are provided
     if sum([x is not None for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]]) < 2:
         return "Error: At least two variables are required to calculate the others."
+    
+    # Ensure all provided values are greater than 0
+    if any(x is not None and x <= 0 for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]):
+        return "Error: All input values must be greater than zero."
 
     if power and voltage_phase:
         voltage_line = math.sqrt(3) * voltage_phase
@@ -108,6 +112,10 @@ def delta_calculations(voltage_phase=None, voltage_line=None, current_phase=None
     # Ensure at least two inputs are provided
     if sum([x is not None for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]]) < 2:
         return "Error: At least two variables are required to calculate the others."
+    
+    # Ensure all provided values are greater than 0
+    if any(x is not None and x <= 0 for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]):
+        return "Error: All input values must be greater than zero."
 
     if power and voltage_phase:
         voltage_line = voltage_phase  # In delta, voltage_phase = voltage_line

@@ -75,34 +75,60 @@ document.addEventListener("DOMContentLoaded", function() {
     
         // Update button visuals for Wye/Delta
         configButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-500', 'text-white');
+            btn.classList.remove('bg-blue-600', 'text-white');
             btn.classList.add('bg-gray-200', 'text-black');
         });
-        document.querySelector(`.${randomConnection}-button`).classList.add('bg-blue-500', 'text-white');
+        document.querySelector(`.${randomConnection}-button`).classList.add('bg-blue-600', 'text-white');
     
         // Update button visuals for Voltage Type (Phase/Line)
         voltageButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-500', 'text-white');
+            btn.classList.remove('bg-blue-600', 'text-white');
             btn.classList.add('bg-gray-200', 'text-black');
         });
-        document.querySelector(`.${randomVoltageType}-button`).classList.add('bg-blue-500', 'text-white');
+        document.querySelector(`.${randomVoltageType}-button`).classList.add('bg-blue-600', 'text-white');
     
         // Update button visuals for Current Type (Phase/Line)
         currentButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-500', 'text-white');
+            btn.classList.remove('bg-blue-600', 'text-white');
             btn.classList.add('bg-gray-200', 'text-black');
         });
-        document.querySelector(`.current-button.${randomCurrentType}-button`).classList.add('bg-blue-500', 'text-white');
+        document.querySelector(`.current-button.${randomCurrentType}-button`).classList.add('bg-blue-600', 'text-white');
     
         // Automatically submit the form after the random values are set
         submitFormWithFetch();
-    });
-    
+    });    
 
     // Function to handle form submission using fetch
     function submitFormWithFetch() {
         // Gather form data
         const formData = new FormData(document.getElementById('power-form'));
+
+        // Check if at least two fields (voltage, current, resistor, power) are filled
+        const voltage = formData.get('voltage');
+        const current = formData.get('current');
+        const resistor = formData.get('resistor');
+        const power = formData.get('power');
+        let filledFields = 0;
+
+        // Increment for each filled field
+        [voltage, current, resistor, power].forEach(field => {
+            if (field) filledFields++;
+        });
+
+        // If fewer than 2 fields are filled, alert the user and don't submit
+        if (filledFields < 2) {
+            alert('Please fill two fields to calculate.');
+            return;  // Exit the function without making the API call
+        }
+
+        // Check if all entered values are greater than 0 (if they are present)
+        if ((voltage && voltage <= 0) || 
+            (current && current <= 0) || 
+            (resistor && resistor <= 0) || 
+            (power && power <= 0)) {
+            alert('Please enter positive values greater than zero for both intended fields.');
+            return;  // Exit the function without making the API call
+        }
 
         // Send data to Flask via fetch
         fetch('/calculate', {
