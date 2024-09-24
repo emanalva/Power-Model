@@ -6,12 +6,16 @@
 // Purpose:  Combined JavaScript for handling button selections and form submission.
 // *****************************************
 document.addEventListener("DOMContentLoaded", function() {
-
     // Dark Mode Toggle Logic
     const toggleButton = document.getElementById('toggle-dark-mode');
     const body = document.body; // Reference the body directly
+    const titleBox = document.querySelector('.title-box'); // Selects the title box
     const calculatorBox = document.querySelector('.calculator-box'); // Selects the calculator box
-    const resultsBox = document.getElementById('results'); // Selects the results box
+    const labels = document.querySelectorAll('label'); // Selects all labels
+    const buttons = document.querySelectorAll('button'); // Select all buttons
+    const inputs = document.querySelectorAll('input[type="text"]'); // Selects all text inputs
+    const title = document.querySelector('h1'); // Select the title (Power System Calculator)
+    const submitButton = document.querySelector('input[type="submit"]'); // Select the "Calculate" button
 
     // Load previously saved mode from localStorage
     const savedMode = localStorage.getItem('darkMode');
@@ -23,28 +27,72 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Toggle button click event listener
     toggleButton.addEventListener('click', function () {
-        const darkModeEnabled = body.classList.contains('bg-black');
+        const darkModeEnabled = body.classList.contains('bg-uniqueGrayBlack');
 
         if (darkModeEnabled) {
             disableDarkMode();
+            toggleButton.textContent = "Dark Mode"; // Switch to Dark Mode text when dark mode is disabled
         } else {
             enableDarkMode();
+            toggleButton.textContent = "Light Mode"; // Switch to Light Mode text when dark mode is enabled
         }
     });
 
     // Enable dark mode function
     function enableDarkMode() {
-        body.classList.replace('bg-white', 'bg-black');
-        calculatorBox.classList.replace('bg-uniqueLightGray', 'bg-uniqueDarkGray');
-        resultsBox.classList.replace('bg-blue-400', 'bg-gray-700');
+        // Update background and text color for body and components
+        body.classList.replace('bg-white', 'bg-uniqueGrayBlack');
+        titleBox.classList.replace('bg-gray-200', 'bg-uniqueDarkGray');
+        calculatorBox.classList.replace('bg-gray-200', 'bg-uniqueDarkGray');
+
+        // Change text color to white for all labels
+        labels.forEach(label => {
+            label.classList.replace('text-black', 'text-white');
+        });
+
+        // Change button text color and background
+        buttons.forEach(button => {
+            button.classList.replace('text-black', 'text-white');
+        });
+
+        // Change input boxes' background and keep text black
+        inputs.forEach(input => {
+            input.classList.replace('bg-white', 'bg-gray-300');
+        });
+
+        // Change title and submit button text color to white
+        title.classList.replace('text-black', 'text-white');
+        submitButton.classList.replace('text-black', 'text-white');
+
         localStorage.setItem('darkMode', 'enabled');
     }
 
     // Disable dark mode function
     function disableDarkMode() {
-        body.classList.replace('bg-black', 'bg-white');
-        calculatorBox.classList.replace('bg-uniqueDarkGray', 'bg-uniqueLightGray');
-        resultsBox.classList.replace('bg-gray-700', 'bg-blue-400');
+        // Revert background and text color for body and components
+        body.classList.replace('bg-uniqueGrayBlack', 'bg-white');
+        titleBox.classList.replace('bg-uniqueDarkGray', 'bg-gray-200');
+        calculatorBox.classList.replace('bg-uniqueDarkGray', 'bg-gray-200');
+
+        // Revert text color to black for all labels
+        labels.forEach(label => {
+            label.classList.replace('text-white', 'text-black');
+        });
+
+        // Revert button text color and background
+        buttons.forEach(button => {
+            button.classList.replace('text-white', 'text-black');
+        });
+
+        // Revert input boxes' background to white
+        inputs.forEach(input => {
+            input.classList.replace('bg-gray-300', 'bg-white');
+        });
+
+        // Revert title and submit button text color to black
+        title.classList.replace('text-white', 'text-black');
+        submitButton.classList.replace('text-white', 'text-black');
+
         localStorage.setItem('darkMode', 'disabled');
     }
 
@@ -54,9 +102,9 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             configButtons.forEach(btn => {
                 btn.classList.remove('bg-blue-400', 'text-white');
-                btn.classList.add('bg-gray-200', 'text-black');
+                btn.classList.add('bg-uniqueLightGray', 'text-black');
             });
-            button.classList.remove('bg-gray-200', 'text-black');
+            button.classList.remove('bg-uniqueLightGray', 'text-black');
             button.classList.add('bg-blue-400', 'text-white');
             document.getElementById('connection').value = button.getAttribute('data-value');
         });
@@ -68,9 +116,9 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             voltageButtons.forEach(btn => {
                 btn.classList.remove('bg-blue-400', 'text-white');
-                btn.classList.add('bg-gray-200', 'text-black');
+                btn.classList.add('bg-uniqueLightGray', 'text-black');
             });
-            button.classList.remove('bg-gray-200', 'text-black');
+            button.classList.remove('bg-uniqueLightGray', 'text-black');
             button.classList.add('bg-blue-400', 'text-white');
             document.getElementById('voltage_type').value = button.getAttribute('data-value');
         });
@@ -82,9 +130,9 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener('click', function() {
             currentButtons.forEach(btn => {
                 btn.classList.remove('bg-blue-400', 'text-white');
-                btn.classList.add('bg-gray-200', 'text-black');
+                btn.classList.add('bg-uniqueLightGray', 'text-black');
             });
-            button.classList.remove('bg-gray-200', 'text-black');
+            button.classList.remove('bg-uniqueLightGray', 'text-black');
             button.classList.add('bg-blue-400', 'text-white');
             document.getElementById('current_type').value = button.getAttribute('data-value');
         });
@@ -117,80 +165,67 @@ document.addEventListener("DOMContentLoaded", function() {
         // Update button visuals for Wye/Delta
         configButtons.forEach(btn => {
             btn.classList.remove('bg-blue-400', 'text-white');
-            btn.classList.add('bg-gray-200', 'text-black');
+            btn.classList.add('bg-uniqueLightGray', 'text-black');
         });
         document.querySelector(`.${randomConnection}-button`).classList.add('bg-blue-400', 'text-white');
     
         // Update button visuals for Voltage Type (Phase/Line)
         voltageButtons.forEach(btn => {
             btn.classList.remove('bg-blue-400', 'text-white');
-            btn.classList.add('bg-gray-200', 'text-black');
+            btn.classList.add('bg-uniqueLightGray', 'text-black');
         });
         document.querySelector(`.${randomVoltageType}-button`).classList.add('bg-blue-400', 'text-white');
     
         // Update button visuals for Current Type (Phase/Line)
         currentButtons.forEach(btn => {
             btn.classList.remove('bg-blue-400', 'text-white');
-            btn.classList.add('bg-gray-200', 'text-black');
+            btn.classList.add('bg-uniqueLightGray', 'text-black');
         });
         document.querySelector(`.current-button.${randomCurrentType}-button`).classList.add('bg-blue-400', 'text-white');
     
         // Automatically submit the form after the random values are set
         submitFormWithFetch();
-
     }); 
 
     // Function to handle form submission using fetch
     function submitFormWithFetch() {
-        // Gather form data
         const formData = new FormData(document.getElementById('power-form'));
-
-        // Check if at least two fields (voltage, current, resistor, power) are filled
         const voltage = formData.get('voltage');
         const current = formData.get('current');
         const resistor = formData.get('resistor');
         const power = formData.get('power');
         let filledFields = 0;
 
-        // Increment for each filled field
         [voltage, current, resistor, power].forEach(field => {
             if (field) filledFields++;
         });
 
-        // If fewer than 2 fields are filled, alert the user and don't submit
         if (filledFields < 2) {
             alert('Please fill two fields to calculate.');
-            return;  // Exit the function without making the API call
+            return; 
         }
 
-        // Check if all entered values are greater than 0 (if they are present)
         if ((voltage && voltage <= 0) || 
             (current && current <= 0) || 
             (resistor && resistor <= 0) || 
             (power && power <= 0)) {
             alert('Please enter positive values greater than zero for both intended fields.');
-            return;  // Exit the function without making the API call
+            return;
         }
 
-        // Send data to Flask via fetch
         fetch('/calculate', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.text()) // Get the response from Flask
+        .then(response => response.text())
         .then(data => {
-            // Insert the results into the results div
             document.getElementById('results').innerHTML = data;
         })
         .catch(error => console.error('Error:', error));
     }
 
-    // Handle Form Submission via the Calculate button
     document.getElementById('power-form').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent page reload
-
-        // Call the same function to submit form via fetch
+        event.preventDefault(); 
         submitFormWithFetch();
-        
     });
 });
