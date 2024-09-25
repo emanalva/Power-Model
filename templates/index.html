@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 
-<body class="bg-white min-h-screen flex flex-col items-center justify-center p-6">
+<body class="bg-white flex flex-col items-center justify-center p-6">
     <div class="bg-gray-200 rounded-2xl p-6 w-full title-box">
         <!-- Title with Dark Mode Toggle -->
         <div class="flex items-center justify-center relative">
@@ -26,10 +26,10 @@
     </div>
 
     <!-- Container for both Calculator and Results -->
-    <div id="main-container" class="flex flex-row items-start justify-center mt-6 w-full space-x-6">
+    <div id="main-container" class="flex flex-row p-6 space-x-6 w-screen justify-center">
         
         <!-- Calculator Box -->
-        <div class="bg-gray-200 rounded-2xl p-6 max-w-2xl calculator-box flex-grow w-1/2">
+        <div class="bg-gray-200 rounded-2xl p-6 calculator-box flex-grow w-1/2 max-h-min max-w-3xl">
             <!-- Input Form -->
             <form id="power-form" action="/calculate" method="POST" class="p-6 rounded-lg flex flex-col space-y-6">
                 <!-- Voltage input -->
@@ -107,15 +107,14 @@
 
                 <!-- Submit button -->
                 <div class="w-full">
-                    <input type="submit" value="Calculate" class=" font-bold bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 w-full">
+                    <input type="submit" value="Calculate" class=" font-bold bg-uniqueGreen text-white p-3 rounded-lg hover:bg-green-600 w-full">
                 </div>
 
             </form>
         </div>
 
         <!-- Results Div -->
-        <div id="results" class="hidden text-lg font-bold text-black bg-blue-400 rounded-2xl p-6 max-w-2xl flex-row flex-grow w-1/2"></div>
-        <!-- div class="bg-gray-200 rounded-2xl p-6 w-full max-w-2xl calculator-box flex-grow min-h-[500px]"> -->
+        <div id="results" class="hidden text-lg font-bold text-black bg-uniqueDarkGray rounded-2xl p-6 flex-grow w-1/2"></div>
     </div>
 
     <!-- Plotting Section -->

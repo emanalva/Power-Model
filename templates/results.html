@@ -16,18 +16,45 @@
 </head>
 <body class="bg-white min-h-screen flex flex-col items-center justify-center p-6">
 
-    <div class="bg-gray-200 rounded-2xl p-6 w-full title-box">
-        <h1 class="text-3xl font-bold text-center flex-grow text-black">Calculation Results</h1>
+    <div class="bg-gray-300 rounded-2xl p-6 w-full title-box">
+        <h1 class="text-3xl font-bold text-center flex-grow">Calculation Results</h1>
     </div>
 
-    <div class="bg-blue-200 rounded-2xl p-6 mt-6 w-full max-w-4xl">
+    <div class="bg-blue-400 rounded-2xl p-6 mt-6 w-full max-w-4xl">
         <h3 class="text-xl font-bold">Results:</h3>
-        <p><strong>Phase Voltage:</strong> {{ voltage_phase }}</p>
-        <p><strong>Line Voltage:</strong> {{ voltage_line }}</p>
-        <p><strong>Phase Current:</strong> {{ current_phase }}</p>
-        <p><strong>Line Current:</strong> {{ current_line }}</p>
-        <p><strong>Power Dissipation:</strong> {{ calculated_power }} W</p>
-        <p><strong>Resistance:</strong> {{ calculated_resistor }} Ω</p>
+
+        <hr class="my-4">
+        <!-- Phase Voltages -->
+        <h4 class="text-lg font-bold">Phase Voltages:</h4>
+        <p><strong>(Vab):</strong> {{ voltage_phase[0][0] | round(2) }} V at {{ voltage_phase[0][1] | round(2) }}°</p>
+        <p><strong>(Vbc):</strong> {{ voltage_phase[1][0] | round(2) }} V at {{ voltage_phase[1][1] | round(2) }}°</p>
+        <p><strong>(Vca):</strong> {{ voltage_phase[2][0] | round(2) }} V at {{ voltage_phase[2][1] | round(2) }}°</p>
+
+        <hr class="my-4">
+        <!-- Line Voltages -->
+        <h4 class="text-lg font-bold">Line Voltages:</h4>
+        <p><strong>(Va):</strong> {{ voltage_line[0][0] | round(2) }} V at {{ voltage_line[0][1] | round(2) }}°</p>
+        <p><strong>(Vb):</strong> {{ voltage_line[1][0] | round(2) }} V at {{ voltage_line[1][1] | round(2) }}°</p>
+        <p><strong>(Vc):</strong> {{ voltage_line[2][0] | round(2) }} V at {{ voltage_line[2][1] | round(2) }}°</p>
+
+        <hr class="my-4">
+        <!-- Phase Currents -->
+        <h4 class="text-lg font-bold">Phase Currents:</h4>
+        <p><strong>(Iab):</strong> {{ current_phase[0][0] | round(2) }} A at {{ current_phase[0][1] | round(2) }}°</p>
+        <p><strong>(Ibc):</strong> {{ current_phase[1][0] | round(2) }} A at {{ current_phase[1][1] | round(2) }}°</p>
+        <p><strong>(Ica):</strong> {{ current_phase[2][0] | round(2) }} A at {{ current_phase[2][1] | round(2) }}°</p>
+
+        <hr class="my-4">
+        <!-- Line Currents -->
+        <h4 class="text-lg font-bold">Line Currents:</h4>
+        <p><strong>(Ia):</strong> {{ current_line[0][0] | round(2) }} A at {{ current_line[0][1] | round(2) }}°</p>
+        <p><strong>(Ib):</strong> {{ current_line[1][0] | round(2) }} A at {{ current_line[1][1] | round(2) }}°</p>
+        <p><strong>(Ic):</strong> {{ current_line[2][0] | round(2) }} A at {{ current_line[2][1] | round(2) }}°</p>
+
+        <hr class="my-4">
+        <!-- Power and Resistance -->
+        <p><strong>Power Dissipation:</strong> {{ calculated_power | round(2) }} W</p>
+        <p><strong>Resistance:</strong> {{ calculated_resistor | round(2) }} Ω</p>
     </div>
 
     <div class="mt-6 flex flex-col space-y-6">
