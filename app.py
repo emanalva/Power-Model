@@ -8,9 +8,9 @@
 
 # Imports
 from flask import Flask, request, render_template
-from calculations import wye_calculations, delta_calculations
+from calculations import wye_calculations, delta_calculations, generate_time_series, calculate_3phase_voltages, calculate_3phase_currents
+from plotting import plot_3phase, plot_power  # Importing plotting functions
 
-# Flask app
 app = Flask(__name__)
 
 # Route for the home page
@@ -18,7 +18,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-# Route for the calculations
+# Route for the calculations and plots
 @app.route('/calculate', methods=['POST'])
 def calculate():
     # Collect input from the form
@@ -30,34 +30,26 @@ def calculate():
     resistor = float(request.form['resistor']) if request.form['resistor'] else None
     power = float(request.form['power']) if request.form['power'] else None
 
-    # Initialize variables for results
-    result = None
-
-    # Handle calculations based on the connection type
+    # Perform calculations
     if connection_type == 'wye':
-        result = wye_calculations(
-            voltage_phase=voltage if voltage_type == 'phase' else None,
-            voltage_line=voltage if voltage_type == 'line' else None,
-            current_phase=current if current_type == 'phase' else None,
-            current_line=current if current_type == 'line' else None,
-            R=resistor,
-            power=power
-        )
+        result = wye_calculations(voltage_phase=voltage if voltage_type == 'phase' else None,
+                                  voltage_line=voltage if voltage_type == 'line' else None,
+                                  current_phase=current if current_type == 'phase' else None,
+                                  current_line=current if current_type == 'line' else None,
+                                  R=resistor,
+                                  power=power)
     elif connection_type == 'delta':
-        result = delta_calculations(
-            voltage_phase=voltage if voltage_type == 'phase' else None,
-            voltage_line=voltage if voltage_type == 'line' else None,
-            current_phase=current if current_type == 'phase' else None,
-            current_line=current if current_type == 'line' else None,
-            R=resistor,
-            power=power
-        )
+        result = delta_calculations(voltage_phase=voltage if voltage_type == 'phase' else None,
+                                    voltage_line=voltage if voltage_type == 'line' else None,
+                                    current_phase=current if current_type == 'phase' else None,
+                                    current_line=current if current_type == 'line' else None,
+                                    R=resistor,
+                                    power=power)
 
-    # Handle case where fewer than 2 variables are provided
+    # Handle errors
     if isinstance(result, str):
-        return result  # Return error message directly
+        return result  # Return the error message if there's an issue
 
-    # Extract phasor results
     voltage_phase = result["voltage_phase"]
     voltage_line = result["voltage_line"]
     current_phase = result["current_phase"]
@@ -65,25 +57,39 @@ def calculate():
     calculated_power = result["power"]
     calculated_resistor = result["resistance"]
 
-    # Display the calculated results
-    result_html = "<h3>Results:</h3>"
+    # Generate time points for 60Hz system using the new function
+    time, theta_A, theta_B, theta_C = generate_time_series(frequency=60, period_count=5, time_steps=1000)
 
-    # Iterate over phase A, B, C results
-    for i, (vp, vl, cp, cl) in enumerate(zip(voltage_phase, voltage_line, current_phase or [], current_line or [])):
-        result_html += f"<hr><h4>Phase {['A', 'B', 'C'][i]}:</h4>"
-        result_html += f"<p>Phase Voltage: {vp[0]:,.2f} V at {vp[1]:,.2f}°</p>"
-        result_html += f"<p>Line Voltage: {vl[0]:,.2f} V at {vl[1]:,.2f}°</p>"
-        if cp:
-            result_html += f"<p>Phase Current: {cp[0]:,.2f} A at {cp[1]:,.2f}°</p>"
-        if cl:
-            result_html += f"<p>Line Current: {cl[0]:,.2f} A at {cl[1]:,.2f}°</p>"
+    # Calculate voltages and currents over time using the provided phase angles
+    if voltage_type == 'phase':
+        voltage_A, voltage_B, voltage_C = calculate_3phase_voltages(voltage_phase[0][0], time, theta_A, theta_B, theta_C)
+    else:
+        voltage_A, voltage_B, voltage_C = calculate_3phase_voltages(voltage_line[0][0], time, theta_A, theta_B, theta_C)
 
-    # Final results for power and resistance
-    result_html += f"<hr><h4>Overall Load Power and Resistance:</h4>"
-    result_html += f"<p>Load Power Dissipation: {calculated_power:,.2f} W</p>"
-    result_html += f"<p>Load Resistance: {calculated_resistor:,.2f} Ω</p>"
+    if current_type == 'phase':
+        current_A, current_B, current_C = calculate_3phase_currents(current_phase[0][0], time, theta_A, theta_B, theta_C)
+    else:
+        current_A, current_B, current_C = calculate_3phase_currents(current_line[0][0], time, theta_A, theta_B, theta_C)
 
-    return result_html
+    # Generate plots using the calculated voltages and currents
+    voltage_plot = plot_3phase(time, voltage_A, voltage_B, voltage_C, label='Voltage')
+    current_plot = plot_3phase(time, current_A, current_B, current_C, label='Current')
+
+    # Power plot stays the same
+    power_values = [calculated_power] * len(time)  # Assume power is constant for now
+    power_plot = plot_power(time, power_values)
+
+    # Render the results and plots in HTML
+    return render_template('results.html',
+                           voltage_phase=voltage_phase,
+                           voltage_line=voltage_line,
+                           current_phase=current_phase,
+                           current_line=current_line,
+                           calculated_power=calculated_power,
+                           calculated_resistor=calculated_resistor,
+                           voltage_plot=voltage_plot,
+                           current_plot=current_plot,
+                           power_plot=power_plot)
 
 # Run the app
 if __name__ == "__main__":

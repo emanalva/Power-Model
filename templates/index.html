@@ -3,7 +3,7 @@
 <!-- Date:     09/22/2024 -->
 <!-- Project:  Power-Model -->
 <!--  -->
-<!-- Purpose:  html file for Power System Calculator. -->
+<!-- Purpose:  html file for Power System Calculator -->
 <!-- ***************************************** -->
 
 <!DOCTYPE html>
@@ -119,7 +119,31 @@
 
     <!-- Plotting Section -->
     <div id="plotting_section" class="hidden flex-col justify-center mt-6">
+        <div class="flex justify-between mb-4">
+            <!-- Toggle Voltage Button -->
+            <button id="toggle-voltage" class="bg-blue-500 text-white font-bold p-2 rounded-lg hover:bg-blue-600">
+                Toggle Voltage: Line/Phase
+            </button>
+            <!-- Toggle Current Button -->
+            <button id="toggle-current" class="bg-green-500 text-white font-bold p-2 rounded-lg hover:bg-green-600">
+                Toggle Current: Line/Phase
+            </button>
+        </div>
 
+        <!-- Voltage Plot -->
+        <div id="voltage-plot" class="mt-6">
+            <img id="voltage-image" src="{{ voltage_plot }}" alt="Voltage Plot" class="w-full max-w-2xl">
+        </div>
+
+        <!-- Current Plot -->
+        <div id="current-plot" class="mt-6">
+            <img id="current-image" src="{{ current_plot }}" alt="Current Plot" class="w-full max-w-2xl">
+        </div>
+
+        <!-- Power Plot -->
+        <div id="power-plot" class="mt-6">
+            <img id="power-image" src="{{ power_plot }}" alt="Power Plot" class="w-full max-w-2xl">
+        </div>
     </div>
 
     <!-- Wye and Delta Combined Configuration Diagram -->

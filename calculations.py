@@ -9,6 +9,7 @@
 # Imports
 import math
 import cmath
+import numpy as np
 
 # *****************************************
 # Utility Functions for Phasors
@@ -18,6 +19,7 @@ def polar_to_rect(magnitude, angle_deg):
     """Converts polar form (magnitude, angle) to rectangular form (complex number)."""
     angle_rad = math.radians(angle_deg)
     return cmath.rect(magnitude, angle_rad)
+# end polar_to_rect()
 
 def rect_to_polar(complex_number):
     """Converts rectangular form (complex number) to polar form (magnitude, angle)."""
@@ -25,6 +27,7 @@ def rect_to_polar(complex_number):
     angle_rad = cmath.phase(complex_number)
     angle_deg = math.degrees(angle_rad)
     return magnitude, angle_deg
+# end rect_to_polar()
 
 # *****************************************
 # Wye Connection Calculations
@@ -244,6 +247,73 @@ def delta_calculations(voltage_phase=None, voltage_line=None, current_phase=None
         "resistance": R
     }
 # end delta_calculations()
+
+# *****************************************
+# Time Series Generation for Plotting
+
+# *****************************************
+def generate_time_series(frequency=60, period_count=5, time_steps=500):
+    """
+    Generates time values and phase angles for phasors over several periods of a 3-phase system.
+    
+    frequency: Frequency of the AC system (default: 60Hz).
+    period_count: Number of periods to plot (default: 5 periods).
+    time_steps: Number of points per period (default: 500 points).
+    
+    Returns: 
+    - time array
+    - angles for Phase A, Phase B, and Phase C
+    """
+    # Time array from 0 to 'period_count' periods
+    total_time = period_count * (1 / frequency)
+    time = np.linspace(0, total_time, time_steps)
+    
+    # Phase angles (120 degrees apart for a balanced 3-phase system)
+    theta_A = 2 * np.pi * frequency * time            # Phase A (0°)
+    theta_B = theta_A - (2 * np.pi / 3)               # Phase B (120° behind A)
+    theta_C = theta_A + (2 * np.pi / 3)               # Phase C (120° ahead of A)
+    
+    return time, theta_A, theta_B, theta_C
+
+
+def calculate_3phase_voltages(voltage_magnitude, time, theta_A, theta_B, theta_C):
+    """
+    Calculates the 3-phase voltages over time based on the phase angles.
+
+    voltage_magnitude: The amplitude of the phase/line voltage.
+    time: Time array.
+    theta_A, theta_B, theta_C: Phase angles for Phases A, B, and C.
+    
+    Returns: 
+    - Voltage A
+    - Voltage B
+    - Voltage C
+    """
+    voltage_A = voltage_magnitude * np.cos(theta_A)
+    voltage_B = voltage_magnitude * np.cos(theta_B)
+    voltage_C = voltage_magnitude * np.cos(theta_C)
+    
+    return voltage_A, voltage_B, voltage_C
+
+
+def calculate_3phase_currents(current_magnitude, time, theta_A, theta_B, theta_C):
+    """
+    Calculates the 3-phase currents over time based on the phase angles.
+
+    current_magnitude: The amplitude of the phase/line current.
+    time: Time array.
+    theta_A, theta_B, theta_C: Phase angles for Phases A, B, and C.
+    
+    Returns: 
+    - Current A
+    - Current B
+    - Current C
+    """
+    current_A = current_magnitude * np.cos(theta_A)
+    current_B = current_magnitude * np.cos(theta_B)
+    current_C = current_magnitude * np.cos(theta_C)
+    
+    return current_A, current_B, current_C
 
 # ************************************
 # Uncomment to test calculations
