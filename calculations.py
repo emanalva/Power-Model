@@ -136,7 +136,6 @@ def wye_calculations(voltage_phase=None, voltage_line=None, current_phase=None, 
     }
 # end wye_calculations()
 
-
 # *****************************************
 # Delta Connection Calculations
 #
@@ -233,7 +232,7 @@ def delta_calculations(voltage_phase=None, voltage_line=None, current_phase=None
 
     # Phasor calculations
     phase_voltages = [polar_to_rect(voltage_phase, angle) for angle in phase_angles]
-    line_currents = [polar_to_rect(current_line, angle + 30) for angle in phase_angles]
+    line_currents = [polar_to_rect(current_line, angle - 30) for angle in phase_angles]
     phase_currents = [polar_to_rect(current_phase, angle) for angle in phase_angles]
 
     return {
