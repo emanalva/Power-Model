@@ -52,9 +52,12 @@
         <p><strong>(Ic):</strong> {{ current_line[2][0] | round(2) }} A at {{ current_line[2][1] | round(2) }}°</p>
 
         <hr class="my-4">
-        <!-- Power and Resistance -->
-        <p><strong>Power Dissipation:</strong> {{ calculated_power | round(2) }} W</p>
-        <p><strong>Resistance:</strong> {{ calculated_resistor | round(2) }} Ω</p>
+        <!-- Power -->
+        <p><strong>Load Power Dissipation:</strong> {{ calculated_power | round(2) }} W</p>
+
+        <hr class="my-4">
+        <!-- Resistance -->
+        <p><strong>Load Resistance:</strong> {{ calculated_resistor | round(2) }} Ω</p>
     </div>
 
     <div class="mt-6 flex flex-col space-y-6">
