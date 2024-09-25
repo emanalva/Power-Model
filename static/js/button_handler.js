@@ -230,7 +230,10 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('results').innerHTML = data;
             // Remove the hidden class to display the results
             document.getElementById('results').classList.remove('hidden');
-            document.getElementById('wye_and_delta_section').classList.remove('hidden');
+            // ********************************************************************************
+            // Uncomment to start using Wye and Delta svg
+            // document.getElementById('wye_and_delta_section').classList.remove('hidden');
+            // ********************************************************************************
         })
         .catch(error => console.error('Error:', error));
     }
