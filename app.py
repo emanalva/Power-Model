@@ -58,7 +58,7 @@ def calculate():
     calculated_resistor = result["resistance"]
 
     # Generate time points for 60Hz system using the new function
-    time, theta_A, theta_B, theta_C = generate_time_series(frequency=60, period_count=5, time_steps=1000)
+    time, theta_A, theta_B, theta_C = generate_time_series(frequency=60, period_count=1, time_steps=1000)
 
     # Calculate voltages and currents over time using the provided phase angles
     if voltage_type == 'phase':

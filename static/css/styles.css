@@ -602,6 +602,14 @@ video {
   min-height: 100vh;
 }
 
+.min-h-\[600px\] {
+  min-height: 600px;
+}
+
+.min-h-\[900px\] {
+  min-height: 900px;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -616,6 +624,10 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.min-w-full {
+  min-width: 100%;
 }
 
 .max-w-2xl {
@@ -636,6 +648,10 @@ video {
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {

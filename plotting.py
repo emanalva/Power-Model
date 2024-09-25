@@ -14,8 +14,8 @@ import io
 import base64
 import gc  # For garbage collection
 
-# 
-matplotlib.use('Agg')  # Use non-interactive backend
+# Use non-interactive backend
+matplotlib.use('Agg')
 
 # *****************************************
 # Helper Function: Convert plot to base64-encoded image

@@ -26,10 +26,10 @@
     </div>
 
     <!-- Container for both Calculator and Results -->
-    <div id="main-container" class="flex flex-row items-center justify-center mt-6 w-full space-x-6">
+    <div id="main-container" class="flex flex-row items-start justify-center mt-6 w-full space-x-6">
         
         <!-- Calculator Box -->
-        <div class="bg-gray-200 rounded-2xl p-6 w-full max-w-2xl calculator-box flex-grow min-h-[500px]">
+        <div class="bg-gray-200 rounded-2xl p-6 max-w-2xl calculator-box flex-grow w-1/2">
             <!-- Input Form -->
             <form id="power-form" action="/calculate" method="POST" class="p-6 rounded-lg flex flex-col space-y-6">
                 <!-- Voltage input -->
@@ -114,7 +114,8 @@
         </div>
 
         <!-- Results Div -->
-        <div id="results" class="hidden text-lg font-bold text-black bg-blue-400 rounded-2xl p-6 w-full flex-grow min-h-[500px]"></div>
+        <div id="results" class="hidden text-lg font-bold text-black bg-blue-400 rounded-2xl p-6 max-w-2xl flex-row flex-grow w-1/2"></div>
+        <!-- div class="bg-gray-200 rounded-2xl p-6 w-full max-w-2xl calculator-box flex-grow min-h-[500px]"> -->
     </div>
 
     <!-- Plotting Section -->
