@@ -13,6 +13,7 @@ from plotting import plot_3phase, plot_power  # Importing plotting functions
 
 app = Flask(__name__)
 
+
 # Route for the home page
 @app.route('/')
 def home():
