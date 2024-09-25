@@ -8,6 +8,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Dark Mode Toggle Logic
     const toggleButton = document.getElementById('toggle-dark-mode');
+    const resultsBox = document.getElementById('results'); // Select the results box
     const body = document.body; // Reference the body directly
     const titleBox = document.querySelector('.title-box'); // Selects the title box
     const calculatorBox = document.querySelector('.calculator-box'); // Selects the calculator box
@@ -21,8 +22,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const savedMode = localStorage.getItem('darkMode');
     if (savedMode === 'enabled') {
         enableDarkMode();
+        toggleButton.textContent = "Light Mode"; // Switch to Light Mode text when dark mode is enabled
     } else {
         disableDarkMode();
+        toggleButton.textContent = "Dark Mode"; // Switch to Dark Mode text when dark mode is disabled
     }
 
     // Toggle button click event listener
@@ -62,6 +65,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Change title and submit button text color to white
         title.classList.replace('text-black', 'text-white');
+        resultsBox.classList.replace('text-black', 'text-white');
         submitButton.classList.replace('text-black', 'text-white');
 
         localStorage.setItem('darkMode', 'enabled');
@@ -91,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Revert title and submit button text color to black
         title.classList.replace('text-white', 'text-black');
+        resultsBox.classList.replace('text-white', 'text-black');
         submitButton.classList.replace('text-white', 'text-black');
 
         localStorage.setItem('darkMode', 'disabled');
@@ -101,11 +106,11 @@ document.addEventListener("DOMContentLoaded", function() {
     configButtons.forEach(button => {
         button.addEventListener('click', function() {
             configButtons.forEach(btn => {
-                btn.classList.remove('bg-blue-400', 'text-white');
-                btn.classList.add('bg-uniqueLightGray', 'text-black');
+                btn.classList.remove('bg-blue-400');
+                btn.classList.add('bg-uniqueLightGray');
             });
-            button.classList.remove('bg-uniqueLightGray', 'text-black');
-            button.classList.add('bg-blue-400', 'text-white');
+            button.classList.remove('bg-uniqueLightGray');
+            button.classList.add('bg-blue-400');
             document.getElementById('connection').value = button.getAttribute('data-value');
         });
     });
@@ -115,11 +120,11 @@ document.addEventListener("DOMContentLoaded", function() {
     voltageButtons.forEach(button => {
         button.addEventListener('click', function() {
             voltageButtons.forEach(btn => {
-                btn.classList.remove('bg-blue-400', 'text-white');
-                btn.classList.add('bg-uniqueLightGray', 'text-black');
+                btn.classList.remove('bg-blue-400');
+                btn.classList.add('bg-uniqueLightGray');
             });
-            button.classList.remove('bg-uniqueLightGray', 'text-black');
-            button.classList.add('bg-blue-400', 'text-white');
+            button.classList.remove('bg-uniqueLightGray');
+            button.classList.add('bg-blue-400');
             document.getElementById('voltage_type').value = button.getAttribute('data-value');
         });
     });
@@ -129,11 +134,11 @@ document.addEventListener("DOMContentLoaded", function() {
     currentButtons.forEach(button => {
         button.addEventListener('click', function() {
             currentButtons.forEach(btn => {
-                btn.classList.remove('bg-blue-400', 'text-white');
-                btn.classList.add('bg-uniqueLightGray', 'text-black');
+                btn.classList.remove('bg-blue-400');
+                btn.classList.add('bg-uniqueLightGray');
             });
-            button.classList.remove('bg-uniqueLightGray', 'text-black');
-            button.classList.add('bg-blue-400', 'text-white');
+            button.classList.remove('bg-uniqueLightGray');
+            button.classList.add('bg-blue-400');
             document.getElementById('current_type').value = button.getAttribute('data-value');
         });
     });
@@ -143,51 +148,49 @@ document.addEventListener("DOMContentLoaded", function() {
         // Generate random values for voltage and current
         const randomVoltage = Math.floor(Math.random() * 240) + 1; // 1 to 240
         const randomCurrent = Math.floor(Math.random() * 100) + 1; // 1 to 100
-    
+
         // Randomly select Wye (Y) or Delta (Δ)
         const randomConnection = Math.random() < 0.5 ? 'wye' : 'delta';
-    
+
         // Randomly select Phase or Line for voltage
         const randomVoltageType = Math.random() < 0.5 ? 'phase' : 'line';
-    
+
         // Randomly select Phase or Line for current
         const randomCurrentType = Math.random() < 0.5 ? 'phase' : 'line';
-    
+
         // Set the random values in the input fields
         document.getElementById('voltage').value = randomVoltage;
         document.getElementById('current').value = randomCurrent;
-    
-        // Set the random values for connection, voltage type, and current type
         document.getElementById('connection').value = randomConnection;
         document.getElementById('voltage_type').value = randomVoltageType;
         document.getElementById('current_type').value = randomCurrentType;
-    
-        // Update button visuals for Wye/Delta
-        configButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-400', 'text-white');
-            btn.classList.add('bg-uniqueLightGray', 'text-black');
-        });
-        document.querySelector(`.${randomConnection}-button`).classList.add('bg-blue-400', 'text-white');
-    
-        // Update button visuals for Voltage Type (Phase/Line)
-        voltageButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-400', 'text-white');
-            btn.classList.add('bg-uniqueLightGray', 'text-black');
-        });
-        document.querySelector(`.${randomVoltageType}-button`).classList.add('bg-blue-400', 'text-white');
-    
-        // Update button visuals for Current Type (Phase/Line)
-        currentButtons.forEach(btn => {
-            btn.classList.remove('bg-blue-400', 'text-white');
-            btn.classList.add('bg-uniqueLightGray', 'text-black');
-        });
-        document.querySelector(`.current-button.${randomCurrentType}-button`).classList.add('bg-blue-400', 'text-white');
-    
-        // Automatically submit the form after the random values are set
-        submitFormWithFetch();
-    }); 
 
-    // Function to handle form submission using fetch
+        // Update button visuals for Wye/Delta
+        const configButtons = document.querySelectorAll('.config-button');
+        configButtons.forEach(btn => {
+            btn.classList.replace('bg-blue-400', 'bg-uniqueLightGray');
+        });
+        document.querySelector(`.config-button[data-value="${randomConnection}"]`).classList.replace('bg-uniqueLightGray', 'bg-blue-400');
+        
+        // Update button visuals for Voltage Type (Phase/Line)
+        const voltageButtons = document.querySelectorAll('.voltage-button');
+        voltageButtons.forEach(btn => {
+            btn.classList.replace('bg-blue-400', 'bg-uniqueLightGray');
+        });
+        document.querySelector(`.voltage-button[data-value="${randomVoltageType}"]`).classList.replace('bg-uniqueLightGray', 'bg-blue-400');
+
+        // Update button visuals for Current Type (Phase/Line)
+        const currentButtons = document.querySelectorAll('.current-button');
+        currentButtons.forEach(btn => {
+            btn.classList.replace('bg-blue-400', 'bg-uniqueLightGray');
+        });
+        document.querySelector(`.current-button[data-value="${randomCurrentType}"]`).classList.replace('bg-uniqueLightGray', 'bg-blue-400');
+
+        // Submit form with random values
+        submitFormWithFetch();
+    });
+
+    // Submit Form with Fetch
     function submitFormWithFetch() {
         const formData = new FormData(document.getElementById('power-form'));
         const voltage = formData.get('voltage');
@@ -195,24 +198,29 @@ document.addEventListener("DOMContentLoaded", function() {
         const resistor = formData.get('resistor');
         const power = formData.get('power');
         let filledFields = 0;
+    
+        // Regular expression to check for valid numbers (integer or float)
+        const validNumberRegex = /^-?\d+(\.\d+)?$/;
 
+        // Check if fields are filled
         [voltage, current, resistor, power].forEach(field => {
             if (field) filledFields++;
         });
 
         if (filledFields < 2) {
             alert('Please fill two fields to calculate.');
-            return; 
-        }
-
-        if ((voltage && voltage <= 0) || 
-            (current && current <= 0) || 
-            (resistor && resistor <= 0) || 
-            (power && power <= 0)) {
-            alert('Please enter positive values greater than zero for both intended fields.');
             return;
         }
 
+        // Check if inputs are valid numbers
+        if ((voltage && !validNumberRegex.test(voltage)) || 
+            (current && !validNumberRegex.test(current)) || 
+            (resistor && !validNumberRegex.test(resistor)) || 
+            (power && !validNumberRegex.test(power))) {
+            alert('Please enter valid numbers in all fields.');
+            return;
+        }
+    
         fetch('/calculate', {
             method: 'POST',
             body: formData
@@ -220,12 +228,15 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('results').innerHTML = data;
+            // Remove the hidden class to display the results
+            document.getElementById('results').classList.remove('hidden');
+            document.getElementById('wye_and_delta_section').classList.remove('hidden');
         })
         .catch(error => console.error('Error:', error));
     }
-
+    
     document.getElementById('power-form').addEventListener('submit', function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
         submitFormWithFetch();
-    });
+    });    
 });
