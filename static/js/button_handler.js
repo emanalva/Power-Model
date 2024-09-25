@@ -5,10 +5,12 @@
 // 
 // Purpose:  Combined JavaScript for handling button selections and form submission.
 // *****************************************
+
 document.addEventListener("DOMContentLoaded", function() {
     // Dark Mode Toggle Logic
     const toggleButton = document.getElementById('toggle-dark-mode');
     const resultsBox = document.getElementById('results'); // Select the results box
+    const plottingSection = document.getElementById('plotting_section'); // Select the plotting section
     const body = document.body; // Reference the body directly
     const titleBox = document.querySelector('.title-box'); // Selects the title box
     const calculatorBox = document.querySelector('.calculator-box'); // Selects the calculator box
@@ -230,10 +232,9 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById('results').innerHTML = data;
             // Remove the hidden class to display the results
             document.getElementById('results').classList.remove('hidden');
-            // ********************************************************************************
-            // Uncomment to start using Wye and Delta svg
-            // document.getElementById('wye_and_delta_section').classList.remove('hidden');
-            // ********************************************************************************
+            
+            // *** Unhide the plotting section ***
+            plottingSection.classList.remove('hidden');
         })
         .catch(error => console.error('Error:', error));
     }

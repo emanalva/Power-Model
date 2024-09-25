@@ -114,35 +114,31 @@
         </div>
 
         <!-- Results Div -->
-        <div id="results" class="hidden text-lg font-bold text-black bg-uniqueDarkGray rounded-2xl p-6 flex-grow w-1/2"></div>
+        <div id="results" class="hidden text-lg font-bold text-black bg-uniqueDarkGray rounded-2xl p-6 flex-grow w-1/2 max-h-min max-w-3xl">
+            <!-- Results content dynamically inserted here -->
+        </div>
     </div>
 
-    <!-- Plotting Section -->
-    <div id="plotting_section" class="hidden flex-col justify-center mt-6">
-        <div class="flex justify-between mb-4">
-            <!-- Toggle Voltage Button -->
-            <button id="toggle-voltage" class="bg-blue-500 text-white font-bold p-2 rounded-lg hover:bg-blue-600">
-                Toggle Voltage: Line/Phase
-            </button>
-            <!-- Toggle Current Button -->
-            <button id="toggle-current" class="bg-green-500 text-white font-bold p-2 rounded-lg hover:bg-green-600">
-                Toggle Current: Line/Phase
-            </button>
-        </div>
+    <!-- Plotting Section (Below the main-container) -->
+    <div id="plotting_section" class="hidden flex-col justify-center mt-10 bg-black p-6 rounded-2xl w-full max-w-6xl">
+        <h3 class="text-xl font-bold text-white mb-6">Plots</h3>
 
         <!-- Voltage Plot -->
-        <div id="voltage-plot" class="mt-6">
-            <img id="voltage-image" src="{{ voltage_plot }}" alt="Voltage Plot" class="w-full max-w-2xl">
+        <div class="bg-uniqueLightGray rounded-2xl p-6 mb-6">
+            <h4 class="text-lg font-bold">Voltage Plot</h4>
+            <img src="data:image/png;base64,{{ voltage_plot }}" alt="Voltage Plot" class="w-full max-w-2xl">
         </div>
 
         <!-- Current Plot -->
-        <div id="current-plot" class="mt-6">
-            <img id="current-image" src="{{ current_plot }}" alt="Current Plot" class="w-full max-w-2xl">
+        <div class="bg-uniqueLightGray rounded-2xl p-6 mb-6">
+            <h4 class="text-lg font-bold">Current Plot</h4>
+            <img src="data:image/png;base64,{{ current_plot }}" alt="Current Plot" class="w-full max-w-2xl">
         </div>
 
         <!-- Power Plot -->
-        <div id="power-plot" class="mt-6">
-            <img id="power-image" src="{{ power_plot }}" alt="Power Plot" class="w-full max-w-2xl">
+        <div class="bg-uniqueLightGray rounded-2xl p-6 mb-6">
+            <h4 class="text-lg font-bold">Power Plot</h4>
+            <img src="data:image/png;base64,{{ power_plot }}" alt="Power Plot" class="w-full max-w-2xl">
         </div>
     </div>
 
