@@ -30,20 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleButton.textContent = "Dark Mode"; // Switch to Dark Mode text when dark mode is disabled
     }
 
-    // Set initial state of horizontal lines based on saved mode
-    const resultLines = resultsBox.querySelectorAll('hr');
-    if (savedMode === 'enabled') {
-        resultLines.forEach(line => {
-            line.classList.add('border-white');
-            line.classList.remove('border-black');
-        });
-    } else {
-        resultLines.forEach(line => {
-            line.classList.add('border-black');
-            line.classList.remove('border-white');
-        });
-    }
-
     // Toggle button click event listener
     toggleButton.addEventListener('click', function () {
         const darkModeEnabled = body.classList.contains('bg-uniqueGrayBlack');
@@ -105,10 +91,10 @@ document.addEventListener("DOMContentLoaded", function() {
             plotText.classList.replace('text-black', 'text-white');
         });
 
-        // Update horizontal lines in results box
-        const resultLines = resultsContainer.querySelectorAll('hr');
-        resultLines.forEach(line => {
-            line.classList.replace('border-black', 'border-white');
+        // Update result section backgrounds
+        const resultSections = resultsContainer.querySelectorAll('.bg-gray-200');
+        resultSections.forEach(section => {
+            section.classList.replace('bg-gray-200', 'bg-uniqueDarkGray');
         });
 
         localStorage.setItem('darkMode', 'enabled');
@@ -162,10 +148,10 @@ document.addEventListener("DOMContentLoaded", function() {
             plotText.classList.replace('text-white', 'text-black');
         });
 
-        // Update horizontal lines in results box
-        const resultLines = resultsContainer.querySelectorAll('hr');
-        resultLines.forEach(line => {
-            line.classList.replace('border-white', 'border-black');
+        // Update result section backgrounds
+        const resultSections = resultsContainer.querySelectorAll('.bg-uniqueDarkGray');
+        resultSections.forEach(section => {
+            section.classList.replace('bg-uniqueDarkGray', 'bg-gray-200');
         });
 
         localStorage.setItem('darkMode', 'disabled');
