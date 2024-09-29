@@ -29,41 +29,41 @@
     <div id="main-container" class="flex flex-row p-6 space-x-6 w-screen justify-center">
         
         <!-- Calculator Box -->
-        <div class="bg-gray-200 rounded-2xl p-6 calculator-box flex-grow w-1/2 max-h-min max-w-3xl">
-            <!-- Input Form -->
-            <form id="power-form" action="/calculate" method="POST" class="p-6 rounded-lg flex flex-col space-y-6">
+        <div class="calculator-box bg-gray-200 rounded-2xl p-6 flex-grow w-1/2 max-w-3xl overflow-y-auto">
+            <h2 id="calculator-heading" class="text-2xl font-bold text-white hidden text-center mb-6">Ohm My! Calculation Complete</h2>
+            <form id="power-form" class="space-y-6">
                 <!-- Voltage input -->
                 <div class="flex justify-between w-full items-center">
-                    <label for="voltage" class="text-lg font-bold w-1/3 text-white">Enter Voltage:</label>
-                    <input type="text" name="voltage" id="voltage" placeholder="Voltage (V)" class="font-bold rounded-lg p-2 w-2/3 bg-white text-black">
+                    <label for="voltage" class="text-xl font-bold w-1/3 text-white">Enter Voltage:</label> 
+                    <input type="text" name="voltage" id="voltage" placeholder="Voltage (V)" class="font-bold rounded-lg p-3 w-2/3 bg-white text-black text-lg"> <!-- Increased padding and text size -->
                 </div>
 
                 <!-- Current input -->
                 <div class="flex justify-between w-full font-bold items-center">
-                    <label for="current" class="text-lg w-1/3 text-white">Enter Current:</label>
-                    <input type="text" name="current" id="current" placeholder="Current (A)" class="font-bold rounded-lg p-2 w-2/3 bg-white text-black">
+                    <label for="current" class="text-xl w-1/3 text-white">Enter Current:</label> 
+                    <input type="text" name="current" id="current" placeholder="Current (A)" class="font-bold rounded-lg p-3 w-2/3 bg-white text-black text-lg"> <!-- Increased padding and text size -->
                 </div>
                 
                 <!-- Resistor input -->
                 <div class="flex justify-between w-full font-bold items-center">
-                    <label for="resistor" class="text-lg w-1/3 text-white">Enter Resistor Value:</label>
-                    <input type="text" name="resistor" id="resistor" placeholder="Resistance (Ω)" class="font-bold rounded-lg p-2 w-2/3 bg-white text-black">
+                    <label for="resistor" class="text-xl w-1/3 text-white">Enter Resistor Value:</label> 
+                    <input type="text" name="resistor" id="resistor" placeholder="Resistance (Ω)" class="font-bold rounded-lg p-3 w-2/3 bg-white text-black text-lg"> <!-- Increased padding and text size -->
                 </div>
                 
                 <!-- Power input -->
                 <div class="flex justify-between w-full font-bold items-center">
-                    <label for="power" class="text-lg w-1/3 text-white">Enter Power:</label>
-                    <input type="text" name="power" id="power" placeholder="Power (W)" class="font-bold rounded-lg p-2 w-2/3 bg-white text-black">
+                    <label for="power" class="text-xl w-1/3 text-white">Enter Power:</label> 
+                    <input type="text" name="power" id="power" placeholder="Power (W)" class="font-bold rounded-lg p-3 w-2/3 bg-white text-black text-lg"> <!-- Increased padding and text size -->
                 </div>
 
                 <!-- Wye and Delta Buttons -->
                 <div class="flex justify-between w-full items-center">
-                    <label for="connection" class="text-lg font-bold w-1/2 text-white">Choose Configuration:</label>
+                    <label for="connection" class="text-xl font-bold w-1/2 text-white">Choose Configuration:</label> 
                     <div class="flex justify-between w-1/2">
-                        <button type="button" class="font-bold config-button wye-button bg-uniqueLightGray text-black p-3 rounded-lg hover:bg-blue-300 w-full mr-2" data-value="wye">
+                        <button type="button" class="font-bold config-button wye-button bg-uniqueLightGray text-black p-4 rounded-lg hover:bg-blue-300 w-full mr-2 text-lg" data-value="wye"> <!-- Increased padding and text size -->
                             Wye (Y)
                         </button>
-                        <button type="button" class="font-bold config-button delta-button bg-uniqueLightGray text-black p-3 rounded-lg hover:bg-blue-300 w-full" data-value="delta">
+                        <button type="button" class="font-bold config-button delta-button bg-uniqueLightGray text-black p-4 rounded-lg hover:bg-blue-300 w-full text-lg" data-value="delta"> <!-- Increased padding and text size -->
                             Delta (Δ)
                         </button>
                         <input type="hidden" name="connection" id="connection">
@@ -72,12 +72,12 @@
 
                 <!-- Voltage type: Phase or Line Buttons -->
                 <div class="flex justify-between w-full items-center">
-                    <label for="voltage_type" class="text-lg font-bold w-1/2 text-white">Is Voltage Phase or Line?</label>
+                    <label for="voltage_type" class="text-xl font-bold w-1/2 text-white">Is Voltage Phase or Line?</label> 
                     <div class="flex justify-between w-1/2">
-                        <button type="button" class="font-bold voltage-button phase-button bg-uniqueLightGray text-black p-3 rounded-lg hover:bg-blue-300 w-full mr-2" data-value="phase">
+                        <button type="button" class="font-bold voltage-button phase-button bg-uniqueLightGray text-black p-4 rounded-lg hover:bg-blue-300 w-full mr-2 text-lg" data-value="phase"> <!-- Increased padding and text size -->
                             Phase
                         </button>
-                        <button type="button" class="font-bold voltage-button line-button bg-uniqueLightGray text-black p-3 rounded-lg hover:bg-blue-300 w-full" data-value="line">
+                        <button type="button" class="font-bold voltage-button line-button bg-uniqueLightGray text-black p-4 rounded-lg hover:bg-blue-300 w-full text-lg" data-value="line"> <!-- Increased padding and text size -->
                             Line
                         </button>
                         <input type="hidden" name="voltage_type" id="voltage_type">
@@ -86,12 +86,12 @@
 
                 <!-- Current type: Phase or Line Buttons -->
                 <div class="flex justify-between w-full items-center">
-                    <label for="current_type" class="text-lg font-bold w-1/2 text-white">Is Current Phase or Line?</label>
+                    <label for="current_type" class="text-xl font-bold w-1/2 text-white">Is Current Phase or Line?</label> 
                     <div class="flex justify-between w-1/2">
-                        <button type="button" class="font-bold current-button phase-button bg-uniqueLightGray text-black p-3 rounded-lg hover:bg-blue-300 w-full mr-2" data-value="phase">
+                        <button type="button" class="font-bold current-button phase-button bg-uniqueLightGray text-black p-4 rounded-lg hover:bg-blue-300 w-full mr-2 text-lg" data-value="phase"> <!-- Increased padding and text size -->
                             Phase
                         </button>
-                        <button type="button" class="font-bold current-button line-button bg-uniqueLightGray text-black p-3 rounded-lg hover:bg-blue-300 w-full" data-value="line">
+                        <button type="button" class="font-bold current-button line-button bg-uniqueLightGray text-black p-4 rounded-lg hover:bg-blue-300 w-full text-lg" data-value="line"> <!-- Increased padding and text size -->
                             Line
                         </button>
                         <input type="hidden" name="current_type" id="current_type">
@@ -100,44 +100,46 @@
 
                 <!-- Random Values Button -->
                 <div class="w-full">
-                    <button type="button" id="random-values-button" class=" font-bold bg-yellow-500 text-black p-3 rounded-lg hover:bg-yellow-600 w-full">
+                    <button type="button" id="random-values-button" class="font-bold bg-yellow-500 text-black p-4 rounded-lg hover:bg-yellow-600 w-full text-lg"> <!-- Increased padding and text size -->
                         Random Values
                     </button>
                 </div>
 
                 <!-- Submit button -->
                 <div class="w-full">
-                    <input type="submit" value="Calculate" class=" font-bold bg-uniqueGreen text-white p-3 rounded-lg hover:bg-green-600 w-full">
+                    <input type="submit" value="Calculate" class="font-bold bg-uniqueGreen text-white p-4 rounded-lg hover:bg-green-600 w-full text-lg"> <!-- Increased padding and text size -->
                 </div>
 
             </form>
         </div>
 
         <!-- Results Div -->
-        <div id="results" class="hidden text-lg font-bold text-black bg-uniqueDarkGray rounded-2xl p-6 flex-grow w-1/2 max-h-min max-w-3xl">
+        <div id="results" class="hidden text-lg font-bold text-black bg-gray-200 rounded-2xl p-6 flex-grow w-1/2 max-w-3xl max-h-min">
+            <!-- Horizontal lines example -->
+            <hr class="border-black">
             <!-- Results content dynamically inserted here -->
         </div>
     </div>
 
     <!-- Plotting Section (Below the main-container) -->
-    <div id="plotting_section" class="hidden flex-col justify-center mt-10 bg-black p-6 rounded-2xl w-full max-w-6xl">
-        <h3 class="text-xl font-bold text-white mb-6">Plots</h3>
+    <div id="plotting_section" class="hidden flex-col justify-center mt-4 bg-gray-200 p-6 rounded-2xl w-full max-w-6xl">
+        <h3 class="text-xl font-bold text-black mb-6">Plots</h3>
 
         <!-- Voltage Plot -->
         <div class="bg-uniqueLightGray rounded-2xl p-6 mb-6">
-            <h4 class="text-lg font-bold">Voltage Plot</h4>
+            <h4 class="text-lg font-bold text-black">Voltage Plot</h4>
             <img src="data:image/png;base64,{{ voltage_plot }}" alt="Voltage Plot" class="w-full max-w-2xl">
         </div>
 
         <!-- Current Plot -->
         <div class="bg-uniqueLightGray rounded-2xl p-6 mb-6">
-            <h4 class="text-lg font-bold">Current Plot</h4>
+            <h4 class="text-lg font-bold text-black">Current Plot</h4>
             <img src="data:image/png;base64,{{ current_plot }}" alt="Current Plot" class="w-full max-w-2xl">
         </div>
 
         <!-- Power Plot -->
         <div class="bg-uniqueLightGray rounded-2xl p-6 mb-6">
-            <h4 class="text-lg font-bold">Power Plot</h4>
+            <h4 class="text-lg font-bold text-black">Power Plot</h4>
             <img src="data:image/png;base64,{{ power_plot }}" alt="Power Plot" class="w-full max-w-2xl">
         </div>
     </div>

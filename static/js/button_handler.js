@@ -30,6 +30,20 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleButton.textContent = "Dark Mode"; // Switch to Dark Mode text when dark mode is disabled
     }
 
+    // Set initial state of horizontal lines based on saved mode
+    const resultLines = resultsBox.querySelectorAll('hr');
+    if (savedMode === 'enabled') {
+        resultLines.forEach(line => {
+            line.classList.add('border-white');
+            line.classList.remove('border-black');
+        });
+    } else {
+        resultLines.forEach(line => {
+            line.classList.add('border-black');
+            line.classList.remove('border-white');
+        });
+    }
+
     // Toggle button click event listener
     toggleButton.addEventListener('click', function () {
         const darkModeEnabled = body.classList.contains('bg-uniqueGrayBlack');
@@ -70,6 +84,33 @@ document.addEventListener("DOMContentLoaded", function() {
         resultsBox.classList.replace('text-black', 'text-white');
         submitButton.classList.replace('text-black', 'text-white');
 
+        // Update calculator heading
+        const calculatorHeading = document.getElementById('calculator-heading');
+        calculatorHeading.classList.replace('text-black', 'text-white');
+
+        // Update results container
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.classList.replace('bg-gray-200', 'bg-uniqueDarkGray');
+        resultsContainer.classList.replace('text-black', 'text-white');
+
+        // Update plotting container and its heading
+        const plottingContainer = document.getElementById('plotting_section');
+        plottingContainer.classList.replace('bg-gray-200', 'bg-uniqueDarkGray');
+        const plotsHeading = plottingContainer.querySelector('h3');
+        plotsHeading.classList.replace('text-black', 'text-white');
+
+        // Update text within plot containers
+        const plotTexts = plottingContainer.querySelectorAll('h4');
+        plotTexts.forEach(plotText => {
+            plotText.classList.replace('text-black', 'text-white');
+        });
+
+        // Update horizontal lines in results box
+        const resultLines = resultsContainer.querySelectorAll('hr');
+        resultLines.forEach(line => {
+            line.classList.replace('border-black', 'border-white');
+        });
+
         localStorage.setItem('darkMode', 'enabled');
     }
 
@@ -99,6 +140,33 @@ document.addEventListener("DOMContentLoaded", function() {
         title.classList.replace('text-white', 'text-black');
         resultsBox.classList.replace('text-white', 'text-black');
         submitButton.classList.replace('text-white', 'text-black');
+
+        // Update calculator heading
+        const calculatorHeading = document.getElementById('calculator-heading');
+        calculatorHeading.classList.replace('text-white', 'text-black');
+
+        // Update results container
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.classList.replace('bg-uniqueDarkGray', 'bg-gray-200');
+        resultsContainer.classList.replace('text-white', 'text-black');
+
+        // Update plotting container and its heading
+        const plottingContainer = document.getElementById('plotting_section');
+        plottingContainer.classList.replace('bg-uniqueDarkGray', 'bg-gray-200');
+        const plotsHeading = plottingContainer.querySelector('h3');
+        plotsHeading.classList.replace('text-white', 'text-black');
+
+        // Update text within plot containers
+        const plotTexts = plottingContainer.querySelectorAll('h4');
+        plotTexts.forEach(plotText => {
+            plotText.classList.replace('text-white', 'text-black');
+        });
+
+        // Update horizontal lines in results box
+        const resultLines = resultsContainer.querySelectorAll('hr');
+        resultLines.forEach(line => {
+            line.classList.replace('border-white', 'border-black');
+        });
 
         localStorage.setItem('darkMode', 'disabled');
     }
@@ -233,7 +301,10 @@ document.addEventListener("DOMContentLoaded", function() {
             // Remove the hidden class to display the results
             document.getElementById('results').classList.remove('hidden');
             
-            // *** Unhide the plotting section ***
+            // Unhide the calculator heading
+            document.getElementById('calculator-heading').classList.remove('hidden');
+            
+            // Unhide the plotting section
             plottingSection.classList.remove('hidden');
         })
         .catch(error => console.error('Error:', error));
