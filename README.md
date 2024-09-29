@@ -12,10 +12,12 @@ Power-Model is a dynamic web-based application designed to help visualize and in
   - Resistance
   - Power Dissipation
 - **Clear and detailed** results displayed directly on the web page
+- **Graphs**: Display chosen Phase/Line voltage, current, and power plots over time
+- **Dark mode** for comfortable viewing in low-light environments
+- **Random value generation** for quick testing and exploration
 - A Flask app that runs locally or can be deployed to a server
 
 ## 🛠️ Future Enhancements
-- **Graphs**: Display voltage, current, and power graphs over time.
 - **3D Visualization**: Add **phasor diagrams** with magnitude and phase angles, including 3D models for advanced visualization of power systems.
 - **Dynamic Response**: Real-time response for adjusting values on the fly, updating outputs instantly.
 
