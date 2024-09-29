@@ -34,9 +34,11 @@ def rect_to_polar(complex_number):
 #
 # *****************************************
 def wye_calculations(voltage_phase=None, voltage_line=None, current_phase=None, current_line=None, R=None, power=None):
-    # Ensure at least two inputs are provided
-    if sum([x is not None for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]]) < 2:
-        return "Error: At least two variables are required to calculate the others."
+    # Count how many parameters are provided
+    provided_params = sum(param is not None for param in [voltage_phase, voltage_line, current_phase, current_line, R, power])
+    
+    if provided_params != 2:
+        return {"error": "Please input exactly 2 variables"}
     
     # Ensure all provided values are greater than 0
     if any(x is not None and x <= 0 for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]):
@@ -144,9 +146,11 @@ def wye_calculations(voltage_phase=None, voltage_line=None, current_phase=None, 
 #
 # *****************************************
 def delta_calculations(voltage_phase=None, voltage_line=None, current_phase=None, current_line=None, R=None, power=None):
-    # Ensure at least two inputs are provided
-    if sum([x is not None for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]]) < 2:
-        return "Error: At least two variables are required to calculate the others."
+    # Count how many parameters are provided
+    provided_params = sum(param is not None for param in [voltage_phase, voltage_line, current_phase, current_line, R, power])
+    
+    if provided_params != 2:
+        return {"error": "Please input exactly 2 variables"}
     
     # Ensure all provided values are greater than 0
     if any(x is not None and x <= 0 for x in [voltage_phase, voltage_line, current_phase, current_line, R, power]):

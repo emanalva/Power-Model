@@ -245,6 +245,9 @@ document.addEventListener("DOMContentLoaded", function() {
         const current = formData.get('current');
         const resistor = formData.get('resistor');
         const power = formData.get('power');
+        const connection = formData.get('connection');
+        const voltageType = formData.get('voltage_type');
+        const currentType = formData.get('current_type');
         let filledFields = 0;
 
         // Regular expression to check for valid numbers (integer or float)
@@ -255,8 +258,8 @@ document.addEventListener("DOMContentLoaded", function() {
             if (field) filledFields++;
         });
 
-        if (filledFields < 2) {
-            alert('Please fill two fields to calculate.');
+        if (filledFields !== 2) {
+            alert('Please fill exactly two fields to calculate.');
             return;
         }
 
@@ -266,6 +269,24 @@ document.addEventListener("DOMContentLoaded", function() {
             (resistor && !validNumberRegex.test(resistor)) || 
             (power && !validNumberRegex.test(power))) {
             alert('Please enter valid numbers in all fields.');
+            return;
+        }
+
+        // Check if configuration is selected
+        if (!connection) {
+            alert('Must choose Wye or Delta Configuration');
+            return;
+        }
+
+        // Check if voltage type is selected
+        if (!voltageType) {
+            alert('Must choose Phase or Line Voltage');
+            return;
+        }
+
+        // Check if current type is selected
+        if (!currentType) {
+            alert('Must choose Phase or Line Current');
             return;
         }
 
@@ -281,6 +302,9 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // Unhide the "Plot" button
             document.getElementById('plot-button').classList.remove('hidden');
+
+            // Add this line to hide the plotting section
+            document.getElementById('plotting_section').classList.add('hidden');
         })
         .catch(error => console.error('Error:', error));
     }
