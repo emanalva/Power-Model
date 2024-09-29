@@ -53,11 +53,22 @@ def plot_3phase(time, A_values, B_values, C_values, label):
     plt.plot(time, B_values, label=f'{label} B', color='g')
     plt.plot(time, C_values, label=f'{label} C', color='b')
     
+    # Find the peak value among all phases
+    peak_value = max(max(A_values), max(B_values), max(C_values))
+    
+    # Plot a dashed black line at the peak value
+    plt.axhline(y=peak_value, color='black', linestyle='--', label=f'Peak {label}')
+    
     plt.title(f'3-Phase {label} Over Time')
     plt.xlabel('Time (s)')
     plt.ylabel(f'{label} (V or A)')
     plt.grid(True)
-    plt.legend()
+    
+    # Place the legend in the upper right corner, outside the plot
+    plt.legend(loc='upper right', bbox_to_anchor=(1.15, 1))
+    
+    # Adjust the layout to make room for the legend
+    plt.tight_layout()
     
     # Return base64-encoded image
     img_base64 = convert_plot_to_base64()
@@ -84,7 +95,12 @@ def plot_power(time, power_values):
     plt.xlabel('Time (s)')
     plt.ylabel('Power (W)')
     plt.grid(True)
-    plt.legend()
+    
+    # Place the legend in the upper right corner, outside the plot
+    plt.legend(loc='upper right', bbox_to_anchor=(1.15, 1))
+    
+    # Adjust the layout to make room for the legend
+    plt.tight_layout()
 
     # Return base64-encoded image
     img_base64 = convert_plot_to_base64()
