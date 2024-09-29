@@ -70,10 +70,6 @@ document.addEventListener("DOMContentLoaded", function() {
         resultsBox.classList.replace('text-black', 'text-white');
         submitButton.classList.replace('text-black', 'text-white');
 
-        // Update calculator heading
-        const calculatorHeading = document.getElementById('calculator-heading');
-        calculatorHeading.classList.replace('text-black', 'text-white');
-
         // Update results container
         const resultsContainer = document.getElementById('results');
         resultsContainer.classList.replace('bg-gray-200', 'bg-uniqueDarkGray');
@@ -126,10 +122,6 @@ document.addEventListener("DOMContentLoaded", function() {
         title.classList.replace('text-white', 'text-black');
         resultsBox.classList.replace('text-white', 'text-black');
         submitButton.classList.replace('text-white', 'text-black');
-
-        // Update calculator heading
-        const calculatorHeading = document.getElementById('calculator-heading');
-        calculatorHeading.classList.replace('text-white', 'text-black');
 
         // Update results container
         const resultsContainer = document.getElementById('results');
@@ -254,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const resistor = formData.get('resistor');
         const power = formData.get('power');
         let filledFields = 0;
-    
+
         // Regular expression to check for valid numbers (integer or float)
         const validNumberRegex = /^-?\d+(\.\d+)?$/;
 
@@ -276,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Please enter valid numbers in all fields.');
             return;
         }
-    
+
         fetch('/calculate', {
             method: 'POST',
             body: formData
@@ -287,15 +279,33 @@ document.addEventListener("DOMContentLoaded", function() {
             // Remove the hidden class to display the results
             document.getElementById('results').classList.remove('hidden');
             
-            // Unhide the calculator heading
-            document.getElementById('calculator-heading').classList.remove('hidden');
-            
-            // Unhide the plotting section
-            plottingSection.classList.remove('hidden');
+            // Unhide the "Plot" button
+            document.getElementById('plot-button').classList.remove('hidden');
         })
         .catch(error => console.error('Error:', error));
     }
-    
+
+    // Handle Plot button click
+    document.getElementById('plot-button').addEventListener('click', function() {
+        const formData = new FormData(document.getElementById('power-form'));
+        
+        fetch('/plot', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Update the plot images
+            document.getElementById('voltage-plot').src = 'data:image/png;base64,' + data.voltage_plot;
+            document.getElementById('current-plot').src = 'data:image/png;base64,' + data.current_plot;
+            document.getElementById('power-plot').src = 'data:image/png;base64,' + data.power_plot;
+            
+            // Unhide the plotting section
+            document.getElementById('plotting_section').classList.remove('hidden');
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
     document.getElementById('power-form').addEventListener('submit', function(event) {
         event.preventDefault();
         submitFormWithFetch();

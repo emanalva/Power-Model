@@ -48,7 +48,7 @@ def plot_3phase(time, A_values, B_values, C_values, label):
     C_values: Phase C values (voltage/current)
     label: 'Voltage' or 'Current' to differentiate the plot
     """
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(16, 9))
     plt.plot(time, A_values, label=f'{label} A', color='r')
     plt.plot(time, B_values, label=f'{label} B', color='g')
     plt.plot(time, C_values, label=f'{label} C', color='b')
@@ -77,7 +77,7 @@ def plot_power(time, power_values):
     time: Time array
     power_values: Power values over time (can be a constant array if power is constant)
     """
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(16, 9))
     plt.plot(time, power_values, label='Power', color='orange')
     
     plt.title('Power Dissipation Over Time')
