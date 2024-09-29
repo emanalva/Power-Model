@@ -47,6 +47,9 @@ def calculate():
                                     R=resistor,
                                     power=power)
 
+    if "error" in result:
+        return jsonify({"error": result["error"]}), 400
+
     # Store the calculated values in the session
     session['calculated_data'] = {
         'connection_type': connection_type,
