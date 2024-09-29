@@ -19,46 +19,37 @@
     <div class="bg-blue-400 rounded-2xl p-4 w-full max-w-4xl">
         <h3 class="text-xl font-bold mb-2">Results:</h3>
 
-        <!-- Phase Voltages -->
-        <div class="bg-gray-200 rounded-lg p-3 mb-2">
-            <h4 class="text-lg font-bold">Phase Voltages:</h4>
-            <p><strong>(Vab):</strong> {{ voltage_phase[0][0] | round(2) }} V at {{ voltage_phase[0][1] | round(2) }}°</p>
-            <p><strong>(Vbc):</strong> {{ voltage_phase[1][0] | round(2) }} V at {{ voltage_phase[1][1] | round(2) }}°</p>
-            <p><strong>(Vca):</strong> {{ voltage_phase[2][0] | round(2) }} V at {{ voltage_phase[2][1] | round(2) }}°</p>
-        </div>
+        <p class="text-center">-----------------------------------------------------------------------</p>
+        <h4 class="text-lg font-bold">Phase Voltages</h4>
+        <p><strong>(Vab):</strong> {{ voltage_phase[0][0] | round(2) }} V at {{ voltage_phase[0][1] | round(2) }}°</p>
+        <p><strong>(Vbc):</strong> {{ voltage_phase[1][0] | round(2) }} V at {{ voltage_phase[1][1] | round(2) }}°</p>
+        <p><strong>(Vca):</strong> {{ voltage_phase[2][0] | round(2) }} V at {{ voltage_phase[2][1] | round(2) }}°</p>
 
-        <!-- Line Voltages -->
-        <div class="bg-gray-200 rounded-lg p-3 mb-2">
-            <h4 class="text-lg font-bold">Line Voltages:</h4>
-            <p><strong>(Va):</strong> {{ voltage_line[0][0] | round(2) }} V at {{ voltage_line[0][1] | round(2) }}°</p>
-            <p><strong>(Vb):</strong> {{ voltage_line[1][0] | round(2) }} V at {{ voltage_line[1][1] | round(2) }}°</p>
-            <p><strong>(Vc):</strong> {{ voltage_line[2][0] | round(2) }} V at {{ voltage_line[2][1] | round(2) }}°</p>
-        </div>
+        <p class="text-center">-----------------------------------------------------------------------</p>
+        <h4 class="text-lg font-bold">Line Voltages</h4>
+        <p><strong>(Va):</strong> {{ voltage_line[0][0] | round(2) }} V at {{ voltage_line[0][1] | round(2) }}°</p>
+        <p><strong>(Vb):</strong> {{ voltage_line[1][0] | round(2) }} V at {{ voltage_line[1][1] | round(2) }}°</p>
+        <p><strong>(Vc):</strong> {{ voltage_line[2][0] | round(2) }} V at {{ voltage_line[2][1] | round(2) }}°</p>
 
-        <!-- Phase Currents -->
-        <div class="bg-gray-200 rounded-lg p-3 mb-2">
-            <h4 class="text-lg font-bold">Phase Currents:</h4>
-            <p><strong>(Iab):</strong> {{ current_phase[0][0] | round(2) }} A at {{ current_phase[0][1] | round(2) }}°</p>
-            <p><strong>(Ibc):</strong> {{ current_phase[1][0] | round(2) }} A at {{ current_phase[1][1] | round(2) }}°</p>
-            <p><strong>(Ica):</strong> {{ current_phase[2][0] | round(2) }} A at {{ current_phase[2][1] | round(2) }}°</p>
-        </div>
+        <p class="text-center">-----------------------------------------------------------------------</p>
+        <h4 class="text-lg font-bold">Phase Currents</h4>
+        <p><strong>(Iab):</strong> {{ current_phase[0][0] | round(2) }} A at {{ current_phase[0][1] | round(2) }}°</p>
+        <p><strong>(Ibc):</strong> {{ current_phase[1][0] | round(2) }} A at {{ current_phase[1][1] | round(2) }}°</p>
+        <p><strong>(Ica):</strong> {{ current_phase[2][0] | round(2) }} A at {{ current_phase[2][1] | round(2) }}°</p>
 
-        <!-- Line Currents -->
-        <div class="bg-gray-200 rounded-lg p-3 mb-2">
-            <h4 class="text-lg font-bold">Line Currents:</h4>
-            <p><strong>(Ia):</strong> {{ current_line[0][0] | round(2) }} A at {{ current_line[0][1] | round(2) }}°</p>
-            <p><strong>(Ib):</strong> {{ current_line[1][0] | round(2) }} A at {{ current_line[1][1] | round(2) }}°</p>
-            <p><strong>(Ic):</strong> {{ current_line[2][0] | round(2) }} A at {{ current_line[2][1] | round(2) }}°</p>
-        </div>
+        <p class="text-center">-----------------------------------------------------------------------</p>
+        <h4 class="text-lg font-bold">Line Currents</h4>
+        <p><strong>(Ia):</strong> {{ current_line[0][0] | round(2) }} A at {{ current_line[0][1] | round(2) }}°</p>
+        <p><strong>(Ib):</strong> {{ current_line[1][0] | round(2) }} A at {{ current_line[1][1] | round(2) }}°</p>
+        <p><strong>(Ic):</strong> {{ current_line[2][0] | round(2) }} A at {{ current_line[2][1] | round(2) }}°</p>
 
-        <!-- Power -->
-        <div class="bg-gray-200 rounded-lg p-3 mb-2">
-            <p><strong>Load Power Dissipation:</strong> {{ calculated_power | round(2) }} W</p>
-        </div>
-        <!-- Resistance -->
-        <div class="bg-gray-200 rounded-lg p-3">
-            <p><strong>Load Resistance:</strong> {{ calculated_resistor | round(2) }} Ω</p>
-        </div>
+        <p class="text-center">-----------------------------------------------------------------------</p>
+        <h4 class="text-lg font-bold">Power</h4>
+        <p><strong>Load Power Dissipation:</strong> {{ calculated_power | round(2) }} W</p>
+        
+        <p class="text-center">-----------------------------------------------------------------------</p>
+        <h4 class="text-lg font-bold">Resistance</h4>
+        <p><strong>Load Resistance:</strong> {{ calculated_resistor | round(2) }} Ω</p>
     </div>
 </body>
 </html>
