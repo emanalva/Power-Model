@@ -32,7 +32,7 @@ You can run the Power-Model locally on your machine by following these steps:
 
 2. **Install the required dependencies**:
     ```bash
-    pip install -r required.txt
+    pip install -r requirements.txt
     ```
 
 3. **Run the app**:
