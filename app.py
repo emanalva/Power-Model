@@ -47,6 +47,7 @@ def calculate():
                                     R=resistor,
                                     power=power)
 
+    # Check if there's an error in the result
     if "error" in result:
         return jsonify({"error": result["error"]}), 400
 
