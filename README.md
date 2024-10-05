@@ -17,6 +17,14 @@ Power-Model is a dynamic web-based application designed to help visualize and in
 - **Random value generation** for quick testing and exploration
 - A Flask app that runs locally or can be deployed to a server
 
+### Light Mode
+
+![Light Mode](images-of-site/light-mode.png)
+
+### Dark Mode
+
+![Dark Mode](images-of-site/dark-mode.png)
+
 ## 🛠️ Future Enhancements
 - **3D Visualization**: Add **phasor diagrams** with magnitude and phase angles, including 3D models for advanced visualization of power systems.
 - **Dynamic Response**: Real-time response for adjusting values on the fly, updating outputs instantly.
