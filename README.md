@@ -25,6 +25,14 @@ Power-Model is a dynamic web-based application designed to help visualize and in
 
 ![Dark Mode](images-of-site/dark-mode.png)
 
+### Display of Results
+
+![Display of Results](images-of-site/results-display.png)
+
+### Plotting
+
+![Plotting](images-of-site/plot-example-one.png)
+
 ## 🛠️ Future Enhancements
 - **3D Visualization**: Add **phasor diagrams** with magnitude and phase angles, including 3D models for advanced visualization of power systems.
 - **Dynamic Response**: Real-time response for adjusting values on the fly, updating outputs instantly.
